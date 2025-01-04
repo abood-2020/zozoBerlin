@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block seo_block %}
+    <title>Imprint | Zozo Berlin - Apartments for Rent</title>
+    <meta name="description" content="Imprint of Zozo Berlin. Find our legal information, owner details, and contact information for our apartment rental services in Berlin." />
+    <meta name="keywords" content="Berlin apartments, furnished rentals Berlin, short-term rentals, long-term accommodation Berlin, vacation rentals Berlin, ZOZO Berlin, apartment booking Berlin">
+
+{% endblock %}
+
+{% block content %}
+        <!-- Hero Section -->
+    <section class="hero-section shapes-view text-center">
+        <div class="shape shape-main"></div>
+        <div class="shape border-main"></div>
+        <div class="shape shape-accent"></div>
+        <div class="shape border-accent"></div>
+        <div class="shape shape-icon"><i class="fas-solid fa-shapes"></i></div>
+        <div class="shape shape-icon"><i class="fas-solid fa-shapes"></i></div>
+        <div class="shape shape-icon-light"><i class="fa-solid fa-diamond"></i></div>
+
+        <div class="container">
+            <h1 class="display-4 fw-bold font-title">Welcome to <span class="accent font-title">ZOZO Berlin</span></h1>
+            <p class="lead">Discover comfort, luxury, and a home away from home in our private apartments.</p>
+        </div>
+    </section>
+    {% comment %} <section class="text-center" style="padding-bottom:80px;">
+        <div class="container">
+            <img src="{% static 'images/apartment3.jpg' %}" class="img-about-us rounded" alt="Youssef">
+        </div>
+    </section> {% endcomment %}
+    <!-- About Owner Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 order-lg-2">
+                    <img src="{% static 'images/apartment3.jpg' %}" width="550" height"310" class="img-fluid rounded" alt="Youssef">
+                </div>
+                <div class="col-lg-6">
+                    <h2 class="display-6 fw-normal font-title">About Joseph</h2>
+                    <p class="text">WE LOVE INTERIOR DESIGN & A SUSTAINABLE WAY OF LIFE! We'll be more than happy to welcome you in our homes mixing emerging interior designer and mid century vintage gems.  And if you enjoy your stay, shop our selected items for your home or locally sourced food in our shop in the hood! For further info and news follow us on dasgoodshaus or biogoods_cafe! Our shops are situated in Kastanienallee
+                    </p>
+                    <div>
+                        <div>
+                            <img width="30" src="{% static 'images/globe.png' %}" alt=""/>
+                            <span class="fw-semibold">Lives in Berlin, Germany</span>
+                        </div>
+                        <div style="margin-top:20px">
+                            <img width="30" src="{% static 'images/speak.png' %}" alt=""/>
+                            <span class="fw-semibold">Speaks Arabic, German, English and French</span>
+                        </div>
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Section Legal Notices -->
+     <div class="row justify-content-evenly">
+        <div class="col-md-4"></div>
+        <div class="col-md-6">
+            <div class="legal-notice">
+                <div>
+                    <p class="section-title">Information in accordance with Section 5 of the German Telemedia Act (TMG):</p>
+                    <p>Joseph Abdel-Nour<br>Kastanienallee 101<br>10435 Berlin, Germany</p>
+                </div>
+    
+                <div class="content-box">
+                    <div>
+                        <p>Contact</p>
+                        <p>Phone: <a href="tel:+493020620304">+49 30 2062 0304</a><br>
+                        Email: <a href="mailto:contact@goodshaus.com">contact@goodshaus.com</a></p>
+                    </div>
+                    <div>
+                        <p class="section-title">VAT Identification Number</p>
+                        <p>VAT ID in accordance with Section 27 a of the German VAT Act:<br><span class="text-highlight">DE217624915</span></p>
+                    </div>
+                </div>
+    
+                <div class="">
+                    <p>Dispute Resolution</p>
+                    <p>The European Commission provides a platform for online dispute resolution (ODR): <a href="https://ec.europa.eu/consumers/odr" target="_blank">https://ec.europa.eu/consumers/odr</a></p>
+                    <p>Our email address can be found above in the legal notice.</p>
+                    <p>We are neither willing nor obligated to participate in dispute resolution proceedings before a consumer arbitration board.</p>
+                </div>
+            </div>
+    
+        </div>   
+     </div>
+    <!-- End Section Feedback Customers -->
+
+{% endblock %}

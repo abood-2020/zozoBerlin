@@ -1,0 +1,45 @@
+{% extends 'base_auth.html'%}
+{% load static %}
+{% block seo_block %}
+    <title>Signup |ZOZO Berlin</title>
+    <meta name="description" content="Sign up for a Zozo Berlin account to start booking stylish apartments in Berlin's Prenzlauer Berg. Enjoy exclusive offers and easy management of your reservations." />
+    <meta name="keywords" content="Berlin apartments, furnished rentals Berlin, short-term rentals, long-term accommodation Berlin, vacation rentals Berlin, ZOZO Berlin, apartment booking Berlin">
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 col-md-12 left-box">
+                <nav> 
+                    <a class="navbar-brand fw-bold" href="{% url 'main_page' %}">ZOZO</a>
+                </nav>
+                <div class="form-container">
+                    <div class="text-center">
+                        <h2 class="fw-bold">Sign Up</h2>
+                        <p >Join us and rent with ease!</p>    
+                    </div>
+                    <form method="POST" novalidate autocomplete="off">
+                        {% csrf_token %}
+                        {% include 'includes/forms.html' %}
+                        <button type="submit" class="btn btn-main btn-block mt-3 w-100">Register</button>
+                    </form>
+                    <p class="mt-3 text-center">Already have an account? <a href="{% url 'login' %}" class="text-decoration-none">Log in</a></p>
+                    <div class="separator">
+                        <span>&nbsp;&nbsp; or &nbsp;&nbsp;   </span>
+                    </div>
+                    <button class="btn btn-white btn-block mb-3">
+                        <img src="{% static 'images/google.png' %}" width="20px" alt="Google" />
+                        &nbsp;&nbsp;&nbsp;
+                        Sign up with Google
+                    </button>
+                    <p class="text-center">By registering, you agree to the <a href="/terms" class="text-decoration-none">Registration Terms</a>.</p>
+    
+                </div>
+            </div>
+            <div class="image-container col-6">
+                <img src="{% static 'images/main_apartment.png' %}" alt="Apartment">
+            </div>
+        </div>
+        
+    </div>
+{% endblock %}

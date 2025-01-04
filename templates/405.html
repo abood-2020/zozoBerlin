@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block seo_block %}
+    <title>ZOZO Berlin | Page Not Found</title>
+    <meta name="description" content="Discover premium apartment rentals in Berlin with ZOZO Berlin. We offer 3 fully-furnished apartments perfect for short and long stays. Book your ideal accommodation in Berlin today!">
+    <meta name="keywords" content="Berlin apartments, furnished rentals Berlin, short-term rentals, long-term accommodation Berlin, vacation rentals Berlin, ZOZO Berlin, apartment booking Berlin">
+    <style>
+        .bg-background {
+            background-color: #f8f9fa;
+        }
+        .text-foreground {
+            color: #343a40;
+        }
+        .text-muted-foreground {
+            color: #6c757d;
+        }
+        .text-primary {
+            color: #0d6efd;
+        }
+    </style>
+
+    {% endblock %}
+{% block content %}
+<div class="d-flex flex-column align-items-center justify-content-center min-vh-100 p-4">
+    <div class="text-center">
+        <h1 class="display-1 fw-bold">405</h1>
+        <p class="lead text-muted">Oops! This Action is Not Allowed.</p>
+        <div class="mb-4">
+        </div>
+        <p class="text-muted-foreground">It seems you've tried to access a page using an incorrect method. Don't worry, we're here to help you get back on track!</p>
+                {% comment %} <nav class="mt-4">
+            <p class="fw-medium">Quick links:</p>
+            <ul class="list-unstyled row ">
+                <li class="col">
+                    <a href="/listings" class="btn btn-link text-decoration-none">
+                        Apartment Listings
+                    </a>
+                </li>
+                <li class="col">
+                    <a href="/book" class="btn btn-link text-decoration-none">
+                        Book Now
+                    </a>
+                </li>
+                <li class="col">
+                    <a href="/help" class="btn btn-link text-decoration-none">
+                        Help Center
+                    </a>
+                </li>
+            </ul> 
+        </nav> {% endcomment %}
+        <a href="/" class="btn btn-main w-100 mt-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 0l-6 6h4v10h4V6h4L8 0z"/>
+            </svg>
+            Return to Homepage
+        </a>
+    </div>
+</div>
+
+{% endblock %}

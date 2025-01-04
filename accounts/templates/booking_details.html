@@ -1,0 +1,364 @@
+{% extends 'base_account.html' %}
+{% load static %}
+
+{% block seo_block %}
+    <title>ZOZO Berlin | Booking Details</title>
+    <meta name="description" content="Discover premium apartment rentals in Berlin with ZOZO Berlin. We offer 3 fully-furnished apartments perfect for short and long stays. Book your ideal accommodation in Berlin today!">
+    <meta name="keywords" content="Berlin apartments, furnished rentals Berlin, short-term rentals, long-term accommodation Berlin, vacation rentals Berlin, ZOZO Berlin, apartment booking Berlin">
+{% endblock %}
+
+{% block content %}
+
+<div class="container my-4 booking_details" >
+    <nav class="breadcrumb-custom d-flex align-items-center">
+            <i class="fa-solid fa-chevron-left px-2"></i>
+            <a href="{% url 'reservation_list' %}">My Booking</a>
+    </nav>
+    
+    <!-- Reservation Details Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2>Booking Details</h2>
+            {% if object.status == 'pending' %}
+                <span class="status status-pending">{{ object.get_status_display }}</span>
+            {% elif object.status == 'pending_approval' %}
+                <span class="status status-pending_approval">{{ object.get_status_display }}</span>
+            {% elif object.status == 'confirmed' %}
+                <span class="status status-confirmed">{{ object.get_status_display }}</span>
+            {% elif object.status == 'cancelled' %}
+                <span class="status status-cancelled">{{ object.get_status_display }}</span>
+            {% endif %}   
+        </div>
+        <div>
+            {% if object.status == 'pending' or object.status == 'pending_approval' %}
+                <a class="btn btn-white me-2">Modify Booking</a>
+            {% endif %}
+            {% if object.status != 'cancelled' %}
+                {% if not review %}
+                    <a type="button" class="btn btn-main" href=""data-bs-toggle="modal" data-bs-target="#reviewModal">Review</a>
+                {% endif %}
+                <a class="btn btn-main me-2" href="{% url 'payment_form' object.id %}">Pay</a>
+                <a class="btn btn-white me-2 button-cancel-booking" href="#" id="cancel_booking">Cancel Booking</a>
+            {% endif %}
+
+        </div>
+    </div>
+    <!-- Reviw Modal -->
+    <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="reviewModalLabel">Apartment Stay Evaluation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Please share your experience with this apartment. Your feedback is valuable to us and future guests.</p>
+                <form id="reviewForm" method="GET" action="{% url 'submit_review' object.id %}">
+                <!-- Overall Rating -->
+                <div class="mb-3">
+                    <label for="rating" class="form-label">Overall Rating</label>
+                    <input type="hidden" id="starRating" name="rating" value="0">
+                    <div id="rating" class="d-flex">
+                        <span class="star star-empty" data-value="1">&#9733;</span>
+                        <span class="star star-empty" data-value="2">&#9733;</span>
+                        <span class="star star-empty" data-value="3">&#9733;</span>
+                        <span class="star star-empty" data-value="4">&#9733;</span>
+                        <span class="star star-empty" data-value="5">&#9733;</span>
+                    </div>
+                </div>
+    
+                <!-- Your Review -->
+                <div class="mb-3">
+                    <label for="comment" class="form-label">Your Review</label>
+                    <textarea name="comment"class="form-control" id="comment" rows="3" placeholder="Share details of your stay to help other travelers"></textarea>
+                </div>
+    
+                <div class="mt-4">
+                    <input type="submit" class="btn btn-main" id="value" value="Submit Review" placeholder="1-5">
+                </div>
+                </form>
+            </div>
+            </div>
+        </div>
+    
+    </div>      
+    <!-- Details Section -->
+        <div class="row justify-content-between">
+            <!-- Reservation Details Box -->
+            <div class="col-md-6 mb-4 ">
+                <div class="p-4 border rounded reservation-box">
+                    <h4 class="fw-bold">Booking Details</h4>
+                    <div class="d-flex justify-content-between mt-3">
+                        <span class="text">Check-in</span>
+                        <span>{{object.start_date}}</span>
+                    </div>
+                    <div class="d-flex justify-content-between mt-2">
+                        <span class="text">Check-out</span>
+                        <span>{{object.end_date}}</span>
+                    </div>
+                    <div class="d-flex justify-content-between mt-2">
+                        <span class="text">Guests</span>
+                        <span>{{object.num_guest}}</span>
+                    </div>
+                    <div class="d-flex justify-content-between mt-2">
+                        <span class="text">Nights</span>
+                        <span>{{object.num_night}}</span>
+                    </div>
+                    <div class="d-flex justify-content-between mt-2">
+                        <span class="text">Total Amount</span>
+                        <span class="fw-bold fs-5">{{object.total_price |floatformat:0}} $</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Apartment Details Box -->
+            <div class="col-md-6 mb-4">
+                <div class="p-4 border rounded apartment-box">
+                    <h4 class="fw-bold">About Apartment </h4>
+                    <div class="d-flex align-items-center mt-3">
+                        <img src="{{object.apartment.main_image.url}}" alt="Apartment Image" class="rounded me-3" width="160" height="80">
+                        <div>
+                            <p class="mb-1 fs-3">{{object.apartment}}</p>
+                            <p class="mb-1 text">
+                                <svg data-id="52" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><line x1="2" x2="5" y1="12" y2="12"></line><line x1="19" x2="22" y1="12" y2="12"></line><line x1="12" x2="12" y1="2" y2="5"></line><line x1="12" x2="12" y1="19" y2="22"></line><circle cx="12" cy="12" r="7"></circle></svg>
+                                <span class="text" style="font-size:14px;">{{object.apartment.location}} <span>
+                            </p>
+                        </div>
+                    </div>
+    
+                    <!-- Payment Details -->
+                    <div class="mt-4">
+                        <div class="d-flex justify-content-between mt-2">
+                            <span class="text">Bedroom</span>
+                            <span>{{object.apartment.num_bedrooms}} </span>
+                        </div>
+                        <div class="d-flex justify-content-between mt-2">
+                            <span class="text">Size (m)</span>
+                            <span>{{object.apartment.area_apartment}} </span>
+                        </div>
+                        <div class="d-flex justify-content-between mt-2">
+                            <span class="text">Price Per Night</span>
+                            <span>{{object.apartment.price_per_night | floatformat:0}} $</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-between">
+            <!-- Payment -->
+            <div class="col-md-6 mb-4">
+                <div class="p-4 border rounded  apartment-box">
+                    <h4 class="fw-bold">Payment </h4>
+                    <div class="d-flex mt-3 align-items-start">
+                        {% if payments%}
+                            <div class="table-responsive w-100">
+                                <table class="table table-hover">
+                                <thead class="table-light">
+                                    <tr>
+                                    <th>Date</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>Details</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for rec in payments %}
+                                        <tr>
+                                        <td>{{rec.date|date:'d/m/Y'}}</td>
+                                        <td>{{rec.amount|floatformat:0}} $</td>
+                                        <td>
+                                            {% if rec.status == 'pending' %}
+                                                <span class="status status-pending">Pending</span>
+                                            {% elif rec.status == 'paid' %}
+                                                <span class="status status-confirmed">Paid</span>
+                                            {% elif rec.status == 'declined' %}
+                                                <span class="status status-cancelled">Declined</span>
+                                            {% endif %} 
+                                        </td>
+                                        <td><a href="" class="details-link"><i class="fa-solid fa-arrow-right"></i></a></td>
+                                        </tr>
+                                    {% endfor%}
+                                </tbody>
+                                </table>
+                            </div>
+                        {% else %}
+                            <div class="d-flex justify-content-center">
+                                No Payments Yet
+                            </div>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Reservation Details Box -->
+            <div class="col-md-6 mb-4 ">
+                <div class="p-4 border rounded reservation-box">
+                    {% if  review %}
+                        <h5 class="fw-bold">Your Review</h5>
+                        <div class="row">
+                            <div class-"col-8">
+                                <div class="star-rating my-2">
+                                    {% for i in "12345"|slice:":5" %}
+                                        {% if forloop.counter <= review.rating %}
+                                            <span class="fa fa-star checked"></span>
+                                        {% else %}
+                                            <span class="fa fa-star"></span>
+                                        {% endif %}
+                                    {% endfor %}
+                                    {{ review.created_at|date:"M, Y" }}
+                                </div>
+                                <p class="card-text">{{review.comment}}</p>
+                    
+                            </div>
+                            <div class-"col-4">
+                                <a href="">Edit</a>
+                                <a class="button-delete-review" href="#" id="delete_review">Delete</a>
+                            </div>
+                        </div>
+                        <hr>
+                    {% endif %}
+                    <h5 class="fw-bold">Cancellation policy</h5>
+                    <p> Free cancellation before Nov 30. </p>
+                    <p>After that, the reservation is non-refundable. <a href="">Learn more</a></p>
+                    
+                </div>
+            </div>
+        </div>
+    {% comment %} </div> {% endcomment %}
+    
+   
+
+</div>
+{% endblock %}
+{% block js_code %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        document.getElementById("cancel_booking").addEventListener("click", function(event) {
+            event.preventDefault(); // منع الرابط من التنقل
+    
+            Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to Booking this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, cancel it!"
+            }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                url: '{% url "cancelation_booking" %}', 
+                type: 'POST',
+                data: {
+                    'reservation_id': {{object.id}},
+                    'csrfmiddlewaretoken': '{{ csrf_token }}' // CSRF token for security
+                },
+                success: function(response) {
+                    if (response.success) {
+                    Swal.fire({
+                        title: "Cancelled!",
+                        text: "Your booking has been cancelled.",
+                        icon: "success"
+                    }).then(() => {
+                        window.location.href = "{% url 'booking_details' object.id %}"; // إعادة التوجيه إلى لوحة القيادة بعد النجاح
+                    });
+                    } else {
+                    Swal.fire({
+                        title: "Error!",
+                        text: response.error,
+                        icon: "error"
+                    });
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('AJAX request failed:', status, error);
+                }
+                });
+            }
+            });
+        
+        });
+        document.getElementById("delete_review").addEventListener("click", function(event) {
+            console.log({{review.pk}})
+
+            event.preventDefault(); // منع الرابط من التنقل
+    
+            Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to Review this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, cancel it!"
+            }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                url: '{% url "delete_review" %}', 
+                type: 'POST',
+                data: {
+                    'review_id': {{review.id}},
+                    'csrfmiddlewaretoken': '{{ csrf_token }}' // CSRF token for security
+                },
+                success: function(response) {
+                    if (response.success) {
+                    Swal.fire({
+                        title: "Cancelled!",
+                        text: "Your booking has been cancelled.",
+                        icon: "success"
+                    }).then(() => {
+                        window.location.href = "{% url 'booking_details' object.id %}"; // إعادة التوجيه إلى لوحة القيادة بعد النجاح
+                    });
+                    } else {
+                    Swal.fire({
+                        title: "Error!",
+                        text: response.error,
+                        icon: "error"
+                    });
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('AJAX request failed:', status, error);
+                }
+                });
+            }
+            });
+        
+        });
+    </script>
+    <script>
+        // JavaScript to handle star rating selection
+        const stars = document.querySelectorAll('.star');
+        const starRatingInput = document.getElementById('starRating');
+
+        stars.forEach(star => {
+          star.addEventListener('click', () => {
+            const rating = star.getAttribute('data-value');
+            starRatingInput.value = rating;
+            console.log(starRatingInput.value)
+            stars.forEach(s => s.classList.remove('star-filled'));
+            stars.forEach(s => s.classList.add('star-empty'));
+            for (let i = 0; i < rating; i++) {
+              stars[i].classList.add('star-filled');
+              stars[i].classList.remove('star-empty');
+            }
+          });
+        });
+    
+        // Form submission event
+        document.getElementById('submitReview').addEventListener('click', () => {
+          const rating = document.querySelectorAll('.star-filled').length;
+          const comment = document.getElementById('comment').value;
+          const cleanliness = document.getElementById('cleanliness').value;
+          const location = document.getElementById('location').value;
+          const value = document.getElementById('value').value;
+          console.log({ rating, comment, cleanliness, location, value });
+          
+          // Close modal after submission
+          const modal = bootstrap.Modal.getInstance(document.getElementById('reviewModal'));
+          modal.hide();
+        });
+      </script>
+    
+
+{% endblock %}

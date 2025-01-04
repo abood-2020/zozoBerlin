@@ -1,0 +1,193 @@
+{% extends 'base_account.html' %}
+{% load static %}
+
+{% block seo_block %}
+    <title>ZOZO Berlin | Payment Form</title>
+    <meta name="description" content="Discover premium apartment rentals in Berlin with ZOZO Berlin. We offer 3 fully-furnished apartments perfect for short and long stays. Book your ideal accommodation in Berlin today!">
+    <meta name="keywords" content="Berlin apartments, furnished rentals Berlin, short-term rentals, long-term accommodation Berlin, vacation rentals Berlin, ZOZO Berlin, apartment booking Berlin">
+    <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/airbnb.css">
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="container my-4 booking_details" >
+        <div class="reservation-box">
+            <h3>
+                Payment                
+                <span class="reservation-status">Pending</span>
+
+            </h3>
+    
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="reservation-details">
+                        <div class="fs-1 reservation-details-title">{{object.apartment}}</div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="detail-title">Check-in</span>
+                            <span class="detail-value">{{object.start_date}}</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="detail-title">Check-out</span>
+                            <span class="detail-value">{{object.end_date}}</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="detail-title">Guests</span>
+                            <span class="detail-value">{{object.num_guest}}</span>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="detail-title">Nights</span>
+                            <span class="detail-value">{{object.num_night}} $</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="detail-title">Nightly Rate</span>
+                            <span class="detail-value">{{object.apartment.price_per_night}} $</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="detail-title">Total</span>
+                            <span class="detail-value">{{object.total_price}} $</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="detail-title">Amount Due</span>
+                            <span class="detail-value" id="amount_due"> $</span>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="detail-title">Remaining Amount</span>
+                            <span class="detail-value" id="remaining_amount">0 $</span>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col-md-6">
+                    <div class="payment-summary">
+                        <form method="POST">
+                            {% csrf_token %}
+
+                            <!-- Payment Option: Deposit or Full Payment -->
+                            <div class="mb-4">
+                                <label class="form-label">Choose Payment</label>
+                                <div class="d-flex">
+                                    <div class="form-check payment-option selected">
+                                        <input class="form-check-input" type="radio" value="deposit" name="payment_options" id="depositOption" checked>
+                                        <label class="form-check-label" for="depositOption">
+                                            30% Deposit
+                                        </label>
+                                    </div>
+                                    <div class="form-check payment-option ms-3">
+                                        <input class="form-check-input" type="radio" value="full_payment" name="payment_options" id="fullPaymentOption">
+                                        <label class="form-check-label" for="fullPaymentOption">
+                                            Full Payment
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+            
+                            <!-- Amount to be Paid -->
+                            <div class="mb-4">
+                                <label for="amountToPay" class="form-label">Paid Amount</label>
+                                <input type="text" class="form-control mt-3" id="amountToPay" name="amount" value="0" readonly>
+                            </div>
+            
+                            <!-- Payment Methods -->
+                            <label class="form-label">Choose Payment Method:</label>
+                            <div class="d-flex justify-content-between mb-4">
+                                <div class="card payment-method selected">
+                                    <img src="{% static 'images/paypal.png' %}" width="40" alt="PayPal" class="card-img-top">
+                                    <input class="form-check-input" type="radio" name="paymentMethod" id="paypalOption" value="paypal" checked>
+                                </div>
+                                <div class="card payment-method">
+                                    <img src="{% static 'images/visa.png' %}" width="40" alt="Visa" class="card-img-top">
+                                    <input class="form-check-input" type="radio" name="paymentMethod" id="visaOption" value="visa">
+                                </div>
+                                <div class="card payment-method">
+                                    <img src="{% static 'images/apple-pay.png' %}" width="40" alt="Apple Pay" class="card-img-top">
+                                    <input class="form-check-input" type="radio" name="paymentMethod" id="applePayOption" value="apple-pay">
+                                </div>
+                            </div>
+                            {% comment %} <!-- Fields for PayPal -->
+                                <div id="paypalFields" class="payment-fields" style="display: none;">
+                                    <!-- PayPal specific fields go here -->
+                                    <label class="form-label">PayPal Email:</label>
+                                    <input type="email" class="form-control" name="paypalEmail">
+                                </div>
+
+                                <!-- Fields for Visa -->
+                                <div id="visaFields" class="payment-fields" style="display: none;">
+                                    <!-- Visa specific fields go here -->
+                                    <label class="form-label">Card Number:</label>
+                                    <input type="text" class="form-control" name="cardNumber">
+                                    <label class="form-label">Expiry Date:</label>
+                                    <input type="text" class="form-control" name="expiryDate">
+                                </div>
+
+                                <!-- Fields for Apple Pay -->
+                                <div id="applePayFields" class="payment-fields" style="display: none;">
+                                    <!-- Apple Pay specific fields go here -->
+                                    <label class="form-label">Apple Pay Account:</label>
+                                    <input type="text" class="form-control" name="applePayAccount">
+                                </div> {% endcomment %}
+            
+                            <!-- Submit Button -->
+                            <div class="d-grid">
+                                <input type="submit" class="btn btn-main w-100 float-right"  value="Payment " />
+
+                            </div>
+                        </form>
+                        <div class="action-buttons d-flex justify-content-between mb-3">
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+           
+    
+            <div class="information-text">
+                <p>
+                    By clicking "Pay 30% Deposit", you will be redirected to Stripe to complete the payment. The remaining 70% will be due 30 days before your arrival.
+                </p>
+            </div>
+        </div>
+    
+
+
+    </div>
+{% endblock %}
+{% block js_code %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/en.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const depositOption = document.getElementById('depositOption');
+        const fullPaymentOption = document.getElementById('fullPaymentOption');
+        const amountToPay = document.getElementById('amountToPay');
+        const amountDue = document.getElementById('amount_due');
+    
+        const totalAmount = {{object.total_price}}; // المبلغ الإجمالي المطلوب دفعه (تحديث هذا الرقم حسب الحاجة)
+    
+        // تحديث المبلغ عند تغيير خيار الدفع
+        function updateAmount() {
+            if (depositOption.checked) {
+                amountToPay.value = (totalAmount * 0.3).toFixed(2); // deposit 30%
+                amountDue.innerText = (totalAmount * 0.3).toFixed(2); 
+            } else if (fullPaymentOption.checked) {
+                amountToPay.value = totalAmount.toFixed(2); // Full payment
+                amountDue.innerText = totalAmount.toFixed(2); + "$"
+            }
+        }
+    
+        // إضافة مستمع للأحداث لتغيير خيار الدفع
+        depositOption.addEventListener('change', updateAmount);
+        fullPaymentOption.addEventListener('change', updateAmount);
+    
+        // تحديث المبلغ عند تحميل الصفحة بناءً على الخيار المحدد
+        updateAmount();
+    });
+    
+
+</script>
+
+{% endblock %}

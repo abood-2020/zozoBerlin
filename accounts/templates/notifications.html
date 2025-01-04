@@ -1,0 +1,36 @@
+{% extends 'base_account.html' %}
+{% load static %}
+
+{% block seo_block %}
+    <title>ZOZO Berlin | My Booking</title>
+    <meta name="description" content="Discover premium apartment rentals in Berlin with ZOZO Berlin. We offer 3 fully-furnished apartments perfect for short and long stays. Book your ideal accommodation in Berlin today!">
+    <meta name="keywords" content="Berlin apartments, furnished rentals Berlin, short-term rentals, long-term accommodation Berlin, vacation rentals Berlin, ZOZO Berlin, apartment booking Berlin">
+{% endblock %}
+
+{% block content %}
+
+{% include "includes/sidebar.html" %}
+  
+<div class="content">
+    <nav class="breadcrumb-custom d-flex align-items-center">
+        <i class="fa-solid fa-chevron-left px-2"></i>
+        <a href="{% url 'dashboard' %}">Dashboard</a>
+
+    </nav>
+    <a class="floating-booking-button" href="{% url 'reservation_page' 1 %}">+</a>
+
+    <div class="row">
+
+    </div>
+
+
+
+
+</div>
+
+{% endblock %}
+
+{% block js_code %}
+
+
+{% endblock %}

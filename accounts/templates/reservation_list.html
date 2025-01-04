@@ -1,0 +1,82 @@
+{% extends 'base_account.html' %}
+{% load static %}
+
+{% block seo_block %}
+    <title>ZOZO Berlin | My Booking</title>
+    <meta name="description" content="Discover premium apartment rentals in Berlin with ZOZO Berlin. We offer 3 fully-furnished apartments perfect for short and long stays. Book your ideal accommodation in Berlin today!">
+    <meta name="keywords" content="Berlin apartments, furnished rentals Berlin, short-term rentals, long-term accommodation Berlin, vacation rentals Berlin, ZOZO Berlin, apartment booking Berlin">
+{% endblock %}
+
+{% block content %}
+
+{% include "includes/sidebar.html" %}
+  
+<div class="content">
+    <nav class="breadcrumb-custom d-flex align-items-center">
+        <i class="fa-solid fa-chevron-left px-2"></i>
+        <a href="{% url 'dashboard' %}">Dashboard</a>
+
+    </nav>
+    <a class="floating-booking-button" href="{% url 'reservation_page' 1 %}">+</a>
+
+    <div class="row">
+        {% if user_reservations %}
+        {% for rec in user_reservations %}
+        <div class="col-md-3">
+            <div class="booking-card">
+                <div class="image-container-booking">
+                    <img src="{{rec.apartment.main_image.url}}" alt="Apartment Image" class="img-fluid">
+                    <a class="overlay" href="{% url 'booking_details' rec.id %}">
+                        <span class="view-details-text">View details</span>
+                    </a>
+                </div>
+                <div class="reservation-details">
+                    <div class="d-flex justify-content-between align-items-center mt-2">
+
+                        {% if rec.status == 'pending' %}
+                            <span class="status-badge status status-pending">{{ rec.get_status_display }}</span>
+                        {% elif rec.status == 'pending_approval' %}
+                            <span class="status-badge status status-pending_approval"> {{ rec.get_status_display }}</span>
+                        {% elif rec.status == 'confirmed' %}
+                            <span class="status-badge status status-confirmed">{{ rec.get_status_display }}</span>
+                        {% elif rec.status == 'cancelled' %}
+                            <span class="status-badge status status-cancelled"> {{ rec.get_status_display }}</span>
+                        {% endif %}
+                        <span class="booking-date">{{ rec.start_date|date:"M d" }} - {{ rec.end_date|date:"M d" }} ,{{ rec.end_date|date:"Y" }}</span>
+
+                    </div>
+                    <div class="reservation-address font-weight-bold">{{rec.apartment}}</div>
+                    <div class="reservation-price" style="font-size:12px">
+                        <p class="mb-1 text">
+                            <svg data-id="52" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><line x1="2" x2="5" y1="12" y2="12"></line><line x1="19" x2="22" y1="12" y2="12"></line><line x1="12" x2="12" y1="2" y2="5"></line><line x1="12" x2="12" y1="19" y2="22"></line><circle cx="12" cy="12" r="7"></circle></svg>
+                            {{rec.apartment.location}} 
+                        </p>
+                    </div>
+                    </div>
+                    <a href="{% url 'booking_details' rec.id %}" class="details-link">
+                        <div class="arrow-down" style="font-size:14px">
+                            View Details
+                        <svg data-id="18" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-muted-foreground"><path d="m9 18 6-6-6-6"></path></svg>                        </div>
+                    </a>
+            
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class="col-12 text-center">
+            <p>No reservations have been made yet.</p>
+        </div>
+    {% endif %}
+    </div>
+
+
+
+
+</div>
+
+{% endblock %}
+
+{% block js_code %}
+
+
+{% endblock %}

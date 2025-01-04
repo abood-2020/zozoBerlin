@@ -1,0 +1,746 @@
+*{
+  font-family: "Roboto", sans-serif;
+      /* font-optical-sizing: auto;
+    font-weight: <weight>;
+    font-style: normal; */
+  }
+.container-fluid {
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 100vh;
+}
+.form-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    max-width: 500px;
+    margin: auto;
+}
+.image-container {
+    flex: 1;
+    margin: 10px;
+    border-radius: 5px;
+}
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+@media (max-width: 768px) {
+    .image-container {
+        display: none;
+    }
+}
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.separator::before,
+.separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 0.9px solid #ccc;
+}
+
+.separator:not(:empty)::before {
+    margin-right: .25em;
+}
+.left-box > nav{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-right: auto;
+    margin-left: 30px;
+}
+.left-box > nav .navbar-brand{
+    font-weight: 600;
+    font-size:32px;
+}
+.btn{
+    border-radius: 5px !important;
+}
+
+.user-img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+/* تنسيق القائمة المنسدلة */
+.dropdown-menu {
+    border-radius: 8px;
+    z-index: 10000;
+    transition: all 0.3s ease;
+}
+
+/* تنسيق العناصر في القائمة المنسدلة */
+.dropdown-item {
+    padding: 10px 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* تأثير عند التحويم */
+.dropdown-item:hover {
+    background-color: #f8f9fa;
+    color: #007bff;
+}
+
+.sidebar {
+  width: 70px; /* Adjust width as needed */
+  height: 100vh;
+  background-color: #ffffff; /* Light background color for the sidebar */
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-right: 1px solid #dee2e6; /* Border to the right */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.sidebar .nav {
+  padding-left: 0;
+  margin-bottom: auto; /* Push logout to the bottom */
+  list-style: none;
+}
+
+.sidebar .nav-item {
+  margin: 10px 0; /* Space between items */
+}
+
+.sidebar .nav-link {
+  width: 50px; /* Adjust width as needed */
+  height: 50px; /* Adjust height as needed */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  text-decoration: none;
+  color: #6c757d; /* Default color */
+  font-size: 1.5rem; /* Adjust icon size */
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.sidebar .nav-link.active {
+  background-color: var(--accent-color); /* Active background color */
+  color: white; /* Active icon color */
+}
+
+.sidebar .nav-link.logout {
+  margin-top: auto; /* Ensure logout is at the bottom */
+}
+
+main {
+  margin-left: 70px; 
+  padding: 20px;
+}
+
+/* Navbar Styles */
+.navbar {
+  padding: 0 20px; /* Adjust padding as needed */
+}
+.navbar-brand {
+  font-size: 1.25rem; /* Adjust font size as needed */
+}
+
+.btn-link {
+  color: #6c757d; /* Default color for the bell icon */
+}
+
+.btn-link:hover {
+  color: #000; /* Change color on hover */
+}
+
+.dropdown-menu {
+  min-width: 200px; /* Adjust width as needed */
+}
+
+.dropdown-item {
+  cursor: pointer;
+}
+/* Bookings Box Styles */
+.box{
+  margin: 0px 20px 30px;
+  border-radius: 10px;
+}
+.box-dashboard {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  height: 90%;
+}
+.bookings-box {
+  background-color: #ffffff; /* White background */
+  border: 1px solid #dee2e6; /* Light border/frame */
+  padding: 30px;
+}
+.title-box{
+  margin: 20px 0px 50px;
+}
+.title-box p{
+  color: #6e6e77;
+  font-size: 20px;
+}
+.table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+.table tr{
+  padding: 20px;
+}
+.table th, .table td {
+  border-bottom: 1px solid #dee2e6; /* Border at the bottom of each row */
+  padding: 20px 2px;
+}
+
+.table th {
+  background-color: #f8f9fa; /* Light background for the header */
+}
+
+.table td {
+  vertical-align: middle;
+}
+
+.dropdown-menu {
+  min-width: 150px; /* Adjust width as needed */
+}
+
+.btn-link {
+  color: #007bff; /* Color for the options icon */
+  font-size: 1rem; /* Adjust icon size */
+}
+
+.btn-link:hover {
+  color: #0056b3; /* Change color on hover */
+}
+.booking_details{
+  width: 80%;
+}
+@media (max-width: 768px) {
+  .booking_details{
+    width: 100%;
+  }
+}
+.reservation-box, .apartment-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100%;
+}
+.image-apartment{
+  width: 140px !important;
+  height: 110px !important;
+  object-fit: cover;
+}
+
+.profile-container {
+  max-width: 900px;
+  margin: 50px auto;
+}
+.profile-header {
+  margin-bottom: 30px;
+}
+.card-header {
+  font-weight: bold;
+}
+.save-button {
+  float: right;
+}
+/* Confirmation Box  */
+.reservation-box {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.reservation-box h3 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+.reservation-details-title,
+.payment-summary-title {
+  font-weight: 500;
+  margin-bottom: 10px;
+  font-size: 22px;
+}
+
+.reservation-details .detail-title,
+.payment-summary .detail-title {
+  font-weight: 400;
+  font-size: 14px;  
+}
+
+.reservation-details .detail-value,
+.payment-summary .detail-value {
+  text-align: right;
+  font-weight:500 ;
+  font-size: 17px;  
+}
+
+.payment-summary .amount {
+  color: #343a40;
+}
+.payment-option {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  cursor: pointer;
+  width: 100% !important;
+  text-align: left !important;
+}
+.payment-option input[type="radio"] {
+  margin-right: 10px;
+}
+.payment-option.active {
+  border: 1.5px solid var(--accent-dark-color);
+}
+.payment-option .price {
+  font-weight: 500;
+  font-size: 1.25rem;
+}
+.payment-option .details {
+  font-size: 0.9rem;
+  color: #555;
+}
+input[type="radio"] {
+  display: none;
+}
+
+/* تصميم الزر الجديد */
+.custom-radio {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--accent-color);
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+  margin-right: 15px;
+}
+
+/* تصميم الدائرة الداخلية عند التحديد */
+input[type="radio"]:checked + .custom-radio::after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  background-color: var(--accent-color);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* إضافة تأثير عند التمرير */
+.custom-radio:hover {
+  border-color: #0056b3;
+}
+.action-buttons .btn {
+  margin-right: 10px;
+}
+
+.information-text {
+  font-size: 0.875rem;
+  color: #6c757d;
+}
+.no-payments-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  color: #6c757d; /* Bootstrap's secondary color */
+}
+.no-payments-container i {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  color: #adb5bd; /* Bootstrap's gray color */
+}
+.actionmenu {
+  position: relative;
+}
+
+.actionmenu button {
+  background-color: #f4f4f5;
+  color: rgb(0, 0, 0);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.actionmenu button:focus {
+  outline: none;
+}
+
+.actionmenu-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) scaleY(0);
+  transform-origin: top;
+  background-color: white;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  overflow: hidden;
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  z-index: 1000;
+  width:170px;
+}
+
+.actionmenu-menu.show {
+  transform: translateX(-50%) scaleY(1);
+  opacity: 1;
+}
+
+.actionmenu-menu a,.actionmenu-menu span {
+  display: block;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #333;
+  transition: background-color 0.3s ease;
+}
+
+.actionmenu-menu a:hover {
+  background-color: #f1f1f1;
+}
+/* General styling for breadcrumb navigation */
+nav[aria-label="breadcrumb"] {
+  padding: 10px 15px; /* Add padding around the breadcrumb */
+}
+
+.breadcrumb {
+  background-color: transparent; /* Remove default background */
+  padding: 0; /* Remove default padding */
+  margin: 0; /* Remove default margin */
+  font-size: 14px; /* Adjust font size for readability */
+}
+
+.breadcrumb-item {
+  display: inline; /* Keep items in line */
+  font-weight: 500; /* Slightly bolder text for better readability */
+  color: #007bff; /* Primary color for links */
+}
+
+.breadcrumb-item a {
+  text-decoration: none; /* Remove underline from links */
+  color: #007bff; /* Primary color for links */
+}
+
+.breadcrumb-item a:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+
+.breadcrumb-item.active {
+  color: #6c757d; /* Secondary color for the active item */
+  font-weight: 400; /* Normal weight for the active item */
+}
+
+/* Customize the breadcrumb divider */
+.breadcrumb-divider {
+  color: #6c757d; /* Divider color */
+  margin: 0 5px; /* Space around the divider */
+}
+.payment-option {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  width: 48%;
+  text-align: center;
+}
+
+.payment-method {
+  width: 30%;
+  border-radius: 5px;
+}
+
+.payment-method img {
+  max-width: 100%;
+  max-height: 100px;
+  object-fit: contain;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.payment-method .card-body {
+  padding: 10px;
+}
+.card {
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.card.selected {
+  background-color: #f5f5f5; /* يمكنك تغيير اللون حسب رغبتك */
+}
+.card input[type="radio"] {
+  /* display: none;  */
+}
+.payment-option {
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  padding: 10px;
+  border-radius: 5px;
+
+}
+
+.payment-option.selected {
+  background-color: #f8f8f8; /* يمكنك تغيير اللون حسب رغبتك */
+}
+
+.booking-card {
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+
+}
+.image-container-booking {
+  position: relative;
+  height: 290px;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.image-container-booking:hover .overlay {
+  opacity: 1;
+}
+.view-details-text {
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.details-link {
+  text-decoration: none;
+}
+
+.arrow-down {
+  text-align: right;
+  padding-bottom: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  color: var(--text-color);
+}
+
+.arrow-down:hover {
+  transform: translateX(5px)
+}
+
+.booking-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.reservation-details {
+  padding: 15px;
+}
+.reservation-address {
+  font-weight: bold;
+  font-family: sans-serif;
+  font-size: 20px;
+  padding-top: 10px;
+}
+.booking-date{
+  font-size: 14px;
+  color: #6e6e77;
+  font-family: inherit;
+}
+.no-reservations {
+  text-align: center;
+  color: #888;
+  font-size: 24px;
+  margin-top: 50px;
+}
+.no-reservations i {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+.status-badge {
+  padding: 2px 10px;
+  border-radius:5px;
+  font-weight: 400;
+  font-size: 0.875rem;
+}
+
+.status-pending {
+  background-color: #eab30c2f;
+  color: #eab30c;
+}
+
+/* حالة الحجز "Pending Approval" */
+.status-pending_approval {
+  background-color: #007bff; /* لون الخلفية أزرق شفاف */
+  color: var(--white-color);
+
+}
+.nav-account-auth{
+
+}
+/* حالة الحجز "Confirmed" */
+.status-confirmed {
+  background-color: #22c55e1f;
+  color: #22c55e;
+
+}
+
+/* حالة الحجز "Cancelled" */
+.status-cancelled {
+  background-color: #ef44441f;
+  color: #ef4444;
+
+}
+.floating-booking-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  border: none;
+  background-color: var(--accent-color);
+  color: white;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 30px;
+  text-align: center;
+  line-height: 60px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  z-index: 1000; /* Ensures the button stays on top */
+}
+.floating-booking-button:hover{
+  color: var(--accent-color);
+  background-color: white;
+
+}
+.apartments-box{
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  /* padding: 8px; */
+  margin-bottom: 20px;
+  box-shadow: 2px 2px 10px rgba(255, 255, 255, 0.336);
+  max-width: 400px;
+  transition: 0.3s transform ease;
+}
+.apartments-box .image{
+  width: 100%;
+  height: 50%;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.apartments-box .image img{
+  width: 100%;
+  height: 290px;
+  object-fit: cover;
+}
+.apartments-box:hover{
+  transform: scale(1.01);
+}
+
+
+/* Bottom bar styles */
+.bottom-bar {
+  display: none; /* Hidden by default */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+  justify-content: space-around;
+  padding: 10px 0;
+  z-index: 999;
+}
+
+.bottom-bar a {
+  text-align: center;
+  flex: 1;
+  color: #333;
+  text-decoration: none;
+}
+.bottom-bar a.active {
+  color: var(--accent-color);
+}
+
+.bottom-bar a svg {
+  display: block;
+  margin: 0 auto 5px;
+}
+
+.bottom-bar a span {
+  display: block;
+  font-size: 12px;
+}
+.offcanvas-navbar{
+  height: 354px;
+  width: 100% !important;
+  top: 0px;
+}
+/* Responsive Adjustments */
+@media (max-width: 991.98px) {
+  .navbar-brand {
+      margin-right: auto;
+  }
+
+  .navbar .dropdown-toggle::after {
+      display: none;
+  }
+}
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+
+  .bottom-bar {
+    display: flex;
+  }
+  main {
+    margin-left: 0px; 
+    padding: 10px 0px;
+  }
+  .floating-booking-button {
+    bottom: 92px;
+    right: 24px;
+  }
+  .nav-top{
+    margin: 5px 0px;
+  }
+}
+.discount-section{
+  display: none;
+}
+.star {
+  font-size: 24px;
+  cursor: pointer;
+}
+.star-filled {
+  color: #ffc107;
+}
+.star-empty {
+  color: #ccc;
+}

@@ -1,0 +1,68 @@
+{% load static %}
+<style>
+    .text-container {
+        width: 300px;
+        display: -webkit-box;
+        -webkit-line-clamp: 3; /* عدد السطور */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .show-more {
+        color: black;
+        cursor: pointer;
+        text-decoration: underline;
+    }
+</style>
+<div class="col-md-6 col-sm-12">
+    <div class="card mb-4 card-review">
+        <div class="card-body">
+            <div class="d-flex align-items-center mt-3">
+                <div class="pic-persona">
+                    {% if rec.profile_image %}
+                        <img src="{{rec.profile_image}}" class="rounded-circle me-3 fit-cover" alt="Customer 1" width="50" height="50">
+                    {% else %}
+                        <img src="{% static 'images/user.png' %}" class="rounded-circle me-3 fit-cover" alt="Customer 1" width="50" height="50">
+                    {% endif %}
+                </div>
+                <div>
+                    <h5 class="card-title mb-0">{{rec.name}} </h5>
+                    <span>{{rec.address}}</span>
+                </div>
+
+            </div>
+            <div class="star-rating my-2">
+                {% for i in "12345"|slice:":5" %}
+                    {% if forloop.counter <= rec.rating %}
+                        <span class="fa fa-star checked"></span>
+                    {% else %}
+                        <span class="fa fa-star"></span>
+                    {% endif %}
+                {% endfor %}
+                  .{{ rec.created_at|date:"M, Y" }}
+            </div>
+            <p class="card-text text-container" id="text-container">  {{rec.comment}}</p>
+            
+            <span class="show-more" id="show-more">Show more</span>
+            <script>
+                const container = document.getElementById("text-container");
+                const showMoreBtn = document.getElementById("show-more");
+        
+                showMoreBtn.addEventListener("click", () => {
+                    if (container.style.webkitLineClamp === "none") {
+                        container.style.webkitLineClamp = "3";
+                        showMoreBtn.textContent = "Show more";
+                    } else {
+                        container.style.webkitLineClamp = "none";
+                        showMoreBtn.textContent = "Show less";
+                    }
+                });
+            </script>
+            <div class="pic-persona">
+            {% if rec.review_method == 'by_airbnb' %}
+                <span class="accent fs-14 fw-solid">FROM AIRBNB</span>
+            {% endif %}
+        </div>
+    </div>
+</div>
+</div>

@@ -1,0 +1,32 @@
+{% extends 'base_account.html' %}
+{% load static %}
+
+{% block seo_block %}
+    <title>ZOZO Berlin | Thank You to Trust US</title>
+    <meta name="description" content="Discover premium apartment rentals in Berlin with ZOZO Berlin. We offer 3 fully-furnished apartments perfect for short and long stays. Book your ideal accommodation in Berlin today!">
+    <meta name="keywords" content="Berlin apartments, furnished rentals Berlin, short-term rentals, long-term accommodation Berlin, vacation rentals Berlin, ZOZO Berlin, apartment booking Berlin">
+
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5" style="min-height:75vh;">
+    <div class="confirmation-container text-center">
+        <div class="icon-container">
+            <img src="{% static 'images/check-mark.png' %}" width="80" alt="" />
+        </div>
+        <div class="thank-you-message">
+            Thank you for trusting us! We wish you a happy booking experience.
+        </div>
+        <div class="reservation-details">
+            <p class="details-value">
+                We are thrilled to welcome you to our <strong>Luxury Suite</strong>. Your check-in is on <strong>July 30, 2024</strong> from <strong>3 PM</strong> onwards, and you'll be staying until <strong>August 05, 2024</strong>. This suite will comfortably accommodate <strong>2 people</strong>, offering a nightly rate of <strong>$150</strong>. There are currently no special requests, but please let us know if you need anything.
+            </p>
+        </div>
+        <div class="button-container">
+            <a href="{% url 'main_page' %}" class="btn btn-main">Return to Home</a>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

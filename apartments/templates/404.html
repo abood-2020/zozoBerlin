@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block seo_block %}
+    <title>Page Not Found</title>
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        
+        h1 {
+            font-weight: bold;
+            color: #dc3545;
+        }
+        
+        h2 {
+            color: #343a40;
+        }
+        
+        p {
+            color: #6c757d;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+<div class="container text-center my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h1 class="display-1">404</h1>
+            <h2 class="display-4">Oops! Page not found</h2>
+            <p class="lead">It seems we can’t find the page you’re looking for. Maybe one of the links below can help you find what you need.</p>
+            <a href="/" class="btn btn-main">Back to Home</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

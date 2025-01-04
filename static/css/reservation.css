@@ -1,0 +1,118 @@
+.reservation-image{
+    width: 300px !important;
+    height: 150px;
+    object-fit: cover;
+}
+.reservation-card {
+    margin-top: 1rem;
+  }
+.reservation-card img {
+max-height: 200px;
+object-fit: cover;
+}
+.price-card {
+margin-top: 1rem;
+text-align: center;
+}
+
+/* start Thanks Page */
+.green-check {
+  color: green;
+  font-size: 4em;
+  animation: flash 1s infinite;
+}
+
+@keyframes flash {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.confirmation-container {
+  /* background-color: #f9f9f9; */
+  padding: 20px;
+  border-radius: 10px;
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+}
+
+.icon-container {
+  margin-bottom: 20px;
+}
+
+.thank-you-message {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.reservation-details {
+  font-size: 1em;
+  color: #333;
+  text-align: left;
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+.details-paragraph {
+  background-color: #efefef;
+  padding: 15px;
+  border-radius: 5px;
+  color: #444;
+}
+.btn-custom {
+  background-color: #28a745;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.btn-custom:hover {
+  background-color: #218838;
+  color: #fff;
+}
+/* End Thanks Page */
+
+.flatpickr-calendar {
+  font-family: Arial, sans-serif;
+}
+.flatpickr-day {
+  border-radius: 50%;
+  transition: background 0.3s;
+}
+.flatpickr-day:hover {
+  background: #6c757d;
+  color: #fff;
+}
+.flatpickr-day.selected, .flatpickr-day.selected:hover {
+  background: #28a745;
+  color: #fff;
+  border-radius: 50%;
+}
+.flatpickr-day.today {
+  border: 2px solid #28a745;
+  color: #28a745;
+}
+.flatpickr-day.disabled, .flatpickr-day.disabled:hover {
+  background: #f00909 !important;
+  color: #fff !important;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+.flatpickr-legend {
+  margin-top: 10px;
+  text-align: center;
+}
+.flatpickr-legend span {
+  display: inline-block;
+  margin: 0 10px;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+.flatpickr-legend .available {
+  background: #28a745;
+  color: #fff;
+}
+.flatpickr-legend .unavailable {
+  background: #ff4d4d;
+  color: #fff;
+}

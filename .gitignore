@@ -1,0 +1,39 @@
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment variables
+.env
+
+# Django migration files
+*.log
+*.pot
+*.pyc
+*.pyo
+*.db
+
+# Media and static files
+media/
+
+# IDEs and editors
+.vscode/
+.idea/
+*.swp
+
+# Virtual environment
+venv/
+env/
+ENV/
+
+# Database files
+*.sqlite3
+
+# MacOS files
+.DS_Store
+
+# Logs and debug files
+*.log
+
+# Node modules (if using npm or yarn for frontend)
+node_modules/

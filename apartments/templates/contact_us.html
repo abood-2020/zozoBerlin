@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block seo_block %}
+    <title>ZOZO Berlin | Contact US</title>
+    <meta name="description" content="Get in touch with Zozo Berlin for inquiries about our stylish apartments for rent in Berlin's Prenzlauer Berg. We are here to assist you!" />
+    <meta name="keywords" content="Berlin apartments, furnished rentals Berlin, short-term rentals, long-term accommodation Berlin, vacation rentals Berlin, ZOZO Berlin, apartment booking Berlin">
+{% endblock %}
+
+{% block content%}
+
+<div class="container contact-page">
+    <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'main_page'%}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Contact Us</li>
+        </ol>
+    </nav>
+  <div class="section-title">
+    <h1 class="main">Contact Us</h1>
+    <div class="text py-4">
+        <p>Reach out to us if you have any further questions.</p>
+    </div>
+  </div>
+  <div class="row justify-content-evenly">
+      <!-- Contact Info Div -->
+      <div class="col-md-4 contact-info">
+          <div class="info-div row" style="padding: 10px 0px !important;">
+            <div class="col-2"> <i class="fas fa-wifi"></i> </div>
+            <div class="col-10">
+                <strong>Email</strong> <br>
+                <span class="text-blue">berlin@zozoberlin.com</span>
+            </div>              
+          </div>
+          <div class="info-div row" style="padding: 10px 0px !important;">
+            <div class="col-2"> <i class="fas fa-phone"></i> </div>
+            <div class="col-10">
+                <strong>Phone</strong> <br>
+                <span style="color:#5f5f5f">+49 179 106 82 87</span>
+            </div>              
+          </div>
+          <div class="info-div row" style="padding: 10px 0px !important;">
+            <div class="col-2"> <i class="fas fa-location"></i> </div>
+            <div class="col-10">
+                <strong>Location</strong> <br>
+                <span>+1234 Elm Street, Springfield, IL, 62704</span>
+            </div>              
+          </div>
+          <div class="info-div row" style="padding: 10px 0px !important;">
+            <div class="col-2"> <i class="fas fa-alert"></i> </div>
+            <div class="col-10">
+                <strong>Notice</strong> <br>
+                <span>If you have an urgent inquiry outside of business hours, please use the form on the right, and we will respond as soon as possible.</span>
+            </div>              
+          </div>
+      </div>
+
+      <!-- Contact Form Div -->
+      <div class="col-md-6 contact-form">
+            {% if success_message %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ success_message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endif %}
+          <form method="POST">
+            {% csrf_token %}
+            {% include 'includes/forms.html' %}
+            <button type="submit" class="btn btn-main w-100">Send Message</button>
+          </form>
+      </div>
+  </div>
+</div>
+{% endblock %}

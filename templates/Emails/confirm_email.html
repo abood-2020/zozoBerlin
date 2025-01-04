@@ -1,0 +1,83 @@
+<!-- email_confirmation_template.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #e11d48; /* Accent color */
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 16px;
+            color: #666;
+        }
+        .details {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .highlight {
+            color: #e11d48; /* Accent color for important info */
+            font-weight: bold;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            text-align: center;
+            color: #999;
+        }
+        .call-to-action {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e11d48; /* Accent color */
+            color: white;
+            text-align: center;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Booking Confirmation</h1>
+        <p>Dear {{ name }},</p>
+        <p>Thank you for choosing us for your stay! We are excited to confirm your booking.</p>
+        <p>Your apartment is ready for you, and we are here to ensure you have a wonderful experience.</p>
+        
+        <div class="details">
+            <p><strong>Apartment Name:</strong> {{ apartment_name }}</p>
+            <p><strong>Check-in Date:</strong> {{ check_in_date }}</p>
+            <p><strong>Check-out Date:</strong> {{ check_out_date }}</p>
+            <p><strong>Number of Guests:</strong> {{ number_of_guests }}</p>
+            <p><strong>Nightly Rate:</strong> {{ nightly_rate }} USD</p>
+            <p><strong>Check-in Time:</strong> <span class="highlight">{{ check_in_time }}</span></p>
+        </div>
+        
+        <p>If you have any questions or special requests, please don't hesitate to reach out.</p>
+        <p class="call-to-action">We look forward to welcoming you!</p>
+
+        <div class="footer">
+            <p>&copy; 2024 ZOZO Berlin</p>
+        </div>
+    </div>
+</body>
+</html>

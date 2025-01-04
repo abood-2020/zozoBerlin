@@ -1,0 +1,934 @@
+*{
+  font-family: "Roboto", sans-serif;
+    /* font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal; */
+}
+.navbar-brand img {
+    max-width: 30px;
+    margin-right: 10px;
+  }
+  
+  /* Adjust the user image size and spacing */
+  .nav-link img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+  }
+  
+  /* Add custom styles for mobile responsiveness if needed */
+  @media (max-width: 768px) {
+    .navbar-nav {
+      text-align: center;
+    }
+    .navbar-nav .nav-item {
+      margin-bottom: 10px;
+    }
+  }
+
+/* Style for the main image */
+.main-image {
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* Style for the thumbnails */
+.thumbnail {
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+.header-footer{
+  padding-bottom: 20px;
+  font-weight: 500;
+  font-size: 17px !important;
+}  
+.line-footer{
+  
+}
+/* Style for the overlay text */
+.position-relative {
+  position: relative;
+}
+#calendar {
+  max-width: 900px;
+  margin: 40px auto;
+}
+.overlay {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Ensures all thumbnails are of equal height and match the height of the main image */
+.col-md-4 > .row > .col-12 {
+  height: 100px; /* 2 * .25rem accounts for 2 margins of 2 images */
+}
+.slider-images{
+    border-radius: 18px !important;
+    padding: 0px !important;
+    overflow: hidden;
+    height: 300px;
+}
+.slider-images img{
+  border-radius: inherit;
+}
+.section-apartment .slider-images div.big-image{
+    padding:0 5px 0 0;
+}
+.section-apartment .slider-images div.small-image{
+    padding:0 0 0 5px
+}
+/* start style navbar */
+.navbar-brand {
+  font-weight: bold;
+  color: #343a40 !important;
+}
+/* إظهار pc-view وإخفاء responsive-view على الشاشات الكبيرة */
+.pc-view {
+  display: block !important;
+}
+
+.responsive-view {
+  display: none !important;
+}
+
+/* عندما يكون العرض أقل من 768px (وضع التابلت أو أقل) */
+@media only screen and (max-width: 768px) {
+  .pc-view {
+    display: none !important;
+  }
+  
+  .responsive-view {
+    display: block !important;
+  }
+}
+.glass-navbar {
+  margin: 20px 10px !important;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.7) !important;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 10px;
+  z-index: 1000;
+}
+
+.glass-navbar .navbar-nav .nav-link {
+  color: #343a40;
+}
+.offcanvas-navbar{
+  height: 354px;
+  width: 100% !important;
+  top: 0px;
+}
+/* end style navbar */
+.img-container{
+  height: 630px;
+}
+.img-landing{
+  max-width: 100%;
+    height: 100%;
+    /* object-fit: cover; */
+}
+.landing-title{
+  font-weight: 800;
+  font-size:75px;
+  line-height: 1.01;
+}
+#landing_page .hash{
+  padding: 5px 20px;
+  border :1px solid var(--accent-color);
+  color: var(--accent-color);
+  border-radius: 365px;
+  max-width: 210px;
+  font-weight: 500;
+  font-size: 14px;
+}
+.navbar-mobile{
+  display: none;
+}
+.border-bottom{
+  border-bottom: 1px solid e5e5e5;
+}
+
+@media (max-width: 768px) {
+  .landing-title{
+    font-weight: 800;
+    font-size:60px;
+    line-height: 1.01;
+  }
+  .navbar-mobile{
+    display: block;
+  }
+  .navbar-website{
+    display: none;
+  }
+}
+.img-effect {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.p-landing{
+  color: var(--text-color);
+  font-size: 19px;
+}
+
+/* location style */
+.full-height-section {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+.curved-corners {
+  border-radius: 15px;
+}
+.image-slider img {
+  border-radius: 15px;
+  height: 100%;
+  border-radius: 15px;
+  object-fit: cover;
+}
+.div{
+  background-color: #fc54422b;
+    width: 34%;
+    padding: 8px 17px;
+    border-radius: 30px;
+}
+
+/* .carousel-control-prev, .carousel-control-next {
+  width: 25px;
+  height: 25px;
+  background-color: rgba(236, 222, 222, 0.826);
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.carousel-control-prev-icon, .carousel-control-next-icon {
+  font-size: 1em;
+} */
+.info-div {
+  border-bottom: 1px solid var(--border-line);
+  padding: 15px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+}
+.info-div i {
+  color: #5e5e5e;
+  margin-right: 10px;
+}
+.btn-custom {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border-radius: 30px;
+}
+.btn-primary-custom {
+  background-color: #007bff;
+  border: none;
+}
+.btn-secondary-custom {
+  background-color: #6c757d;
+  border: none;
+}
+.apartment-card .carousel_apartment{
+  height: 100%;
+  width: 92%;
+}
+.apartment-card .slider-images{
+  height: 600px !important;
+  display: flex;
+  justify-content: center;
+} 
+.apartment-card .carousel-inner{
+  height: 100% !important;
+}
+
+.apartment-card .carousel-item{
+  height: 100% !important;
+} 
+
+@media (max-width: 1024px){
+  .apartment-card .slider-images{
+    height: 450px !important;
+    display: flex;
+    justify-content: center;
+  } 
+  .apartment-card .carousel_apartment{
+    width: 100%;
+  }
+}
+@media (max-width: 600px) {
+  .apartment-card .slider-images{
+    height: 300px !important;
+    display: flex;
+    justify-content: center;
+  } 
+  .apartment-card .carousel_apartment{
+    width: 100%;
+  }
+}
+.rental-price-box {
+  top: 14px;
+    left: 40px;
+    background-color: rgba(255, 255, 255, 0.812);
+    font-weight: 600;
+    font-size: 18px;
+    padding: 8px 29px;
+    border-radius: 265px; 
+}
+/* Customer  */
+.customer-opinions {
+  background-color: #f8f9fa;
+}
+
+.card-review {
+  border: none;
+  border-radius: 15px;
+  padding: 20px;
+}
+
+.star-rating .fa-star {
+  color: #dddddd;
+  font-size: 10px;
+}
+
+.star-rating .checked {
+  color: #212529;
+}
+
+.card-title {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.card-text {
+  font-size: 14px;
+  color: var(--text-color);
+  font-weight: 300;
+}
+
+@media (max-width: 768px) {
+  .card {
+      margin-bottom: 2rem;
+  }
+}
+/* Framer images Start */
+.framer-images{
+  align-self: stretch;
+  flex: none;
+  height: auto;
+  overflow: visible;
+  position: relative;
+  width: 50%;
+}
+/* Framer images End */
+/* FAQ Question */
+.faq-section {
+  background-color: #ffffff;
+}
+
+.accordion-button {
+  background-color: #fff;
+  border: none;
+  outline: none;
+  color: #000;
+  border-radius: 0.5rem;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: #ffffff;
+  color: #000;
+  box-shadow : none !important;
+
+}
+
+.accordion-body {
+  color: #000;
+  border-radius: 0.5rem;
+}
+
+.accordion-item {
+  border: none;
+  border-bottom: 1px solid #bebebe;
+}
+
+.accordion-item + .accordion-item {
+  margin-top: 1rem;
+}
+.accordion-button:focus{
+  box-shadow : none !important;
+}
+
+.accordion-body {
+  padding: 1rem;
+  color: #717171;
+  font-size: 14px;
+}
+@media (min-width: 990px) {
+  .content-apartment{
+    width:55%;
+  }
+}
+@media (min-width: 768px) {
+  .slider-images {
+      width: 45%;
+  }
+}
+/* Footer */
+.footer {
+  background-color: #000000;
+  color: #ffffff;
+  padding-top: 2rem !important;
+  padding-bottom: 2rem !important;
+}
+
+.footer h5 {
+  margin-bottom: 1rem !important;
+
+}
+
+.footer ul {
+  padding-left: 0;
+}
+
+.footer ul li {
+  list-style: none;
+  margin-bottom: 1rem;
+}
+
+.footer ul li a {
+  text-decoration: none;
+}
+.footer ul li a:hover {
+  text-decoration: underline;
+  color: var(--accent-color) !important;
+  font-weight: 400;
+}
+
+.footer .list-inline-item {
+  margin-right: 0.5rem;
+}
+
+@media (max-width: 767.98px) {
+  .footer .text-center {
+      text-align: center !important;
+  }
+}
+
+/* Start Apartment Viwe */
+/* Carousel */
+
+.owl-carousel .item {
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  border: none;
+  width: 100%;
+  transition: transform 0.5s ease;
+}
+
+.card img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+.carousel-inner {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* .carousel-item {
+  display: inline-block;
+  margin-right: 10px;
+  transition: transform 0.5s ease;
+}
+*/
+.carousel-item img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  width: 5%;
+}
+.gallery-image{
+  width: 400px;
+  height: 450px;
+  object-fit: cover;
+}
+.card {
+  border: none;
+}
+
+
+/* End Carousel  */
+/* Start  */
+.icon {
+  font-size: 1.5rem;
+  margin-right: 10px;
+}
+.icon-feature{
+  font-size: 16px;
+  margin-right: 16px;
+}
+.details {
+  margin-bottom: 10px;
+}
+
+.details h6 {
+  margin: 0;
+}
+
+.details p {
+  margin: 0;
+  font-weight: 500;
+}
+
+.details-container {
+  padding: 20px;
+}
+/* End */
+.floating-btn {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+
+}
+.owl-nav{display: none;}
+.owl-dots{display: none;}
+#map {
+  height: 400px;
+  width: 100%;
+}
+/* End Apartment View  */
+/* Start Booking Form Page */
+
+.container {
+  /* margin-top: 20px; */
+}
+.reservation-form, .price-summary {
+  padding: 20px;
+}
+.price-summary {
+  background-color: #e9ecef;
+}
+.payment-method-info {
+  display: none;
+}
+/* End Booking Form  */
+/* Start Profile Page Style */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+  .sidebar.show {
+    transform: translateX(0);
+  }
+}
+.dropdown-menu-end {
+  right: 0;
+  left: auto;
+}
+/* End Profile Page Style */
+.apartment-container {
+  position: relative;
+  margin: 20px auto;
+  border-radius: 20px;
+  height: 400px;
+  overflow: hidden;
+}
+.apartment-photo {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+.small-image-apartment{
+  width: 100%;
+  height: 133px;
+  object-fit: cover;
+
+}
+.col-image{
+  height: 33%;
+}
+.col-image img{
+  height: 100%;
+}
+.price-tag {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+}
+.image-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.apartment-name {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 5px;
+  text-transform: capitalize;
+}
+.apartment-location {
+  font-size: 1rem;
+}
+.company-website {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: #555;
+}
+.book-now-btn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  z-index: 1000;
+  cursor: pointer;
+  text-align: center;
+}
+/* Signup  */
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login-form {
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+}
+
+.offer-section {
+  background: url("../images/main_apartment.png");
+  margin:20px 0px;
+  color: #fff;
+  padding: 100px 0;
+  text-align: center;
+  position: relative;
+}
+.offer-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+}
+.offer-content {
+  position: relative;
+  z-index: 1;
+}
+.offer-content h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+.offer-content p {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+}
+.hero-section {
+  padding: 80px 0;
+}
+
+.bg-muted {
+  background-color: #f8f9fa;
+}
+
+.footer-text {
+  font-size: 12px;
+}
+.icon-box {
+  width: 50px;
+  height: 50px;
+  background-color: #e7f3ff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.icon-box svg {
+  font-size: 24px;
+}
+
+.section-title-about {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.text-muted-foreground {
+  color: #6c757d;
+}
+
+/* BOX Apartment Start */
+
+.apartments-box{
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  /* padding: 8px; */
+  margin-bottom: 20px;
+  box-shadow: 2px 2px 10px rgba(255, 255, 255, 0.336);
+  max-width: 400px;
+  transition: 0.3s transform ease;
+}
+.apartments-box .image{
+  width: 100%;
+  height: 50%;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.apartments-box .image img{
+  width: 100%;
+  height: 290px;
+  object-fit: cover;
+}
+.apartments-box:hover{
+  transform: scale(1.01);
+}
+
+
+/* BOX Apartment End */
+/* Start Our Story */
+.our-story-section {
+  padding: 60px 0;
+  background-color: #f8f9fa;
+}
+
+.our-story-section h2 {
+  font-size: 36px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 40px;
+  color: #007bff;
+}
+
+.story-point {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 50px;
+  align-items: center;
+}
+
+.story-point img {
+  border-radius: 8px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+  width: 100%;
+}
+
+.story-point img:hover {
+  transform: scale(1.05);
+}
+
+.story-content {
+  text-align: left;
+}
+
+.story-year {
+  font-size: 24px;
+  font-weight: bold;
+  color: #007bff;
+}
+
+.story-title {
+  font-size: 28px;
+  font-weight: 600;
+  margin: 10px 0;
+}
+
+
+/* End Our Story */
+.shape-main {
+  background-color: var(--accent-color);
+  overflow: hidden;
+  width: 200px !important;
+  height: 252px !important;
+  top: -39%;
+  right: 94%;
+  transform: rotate(322deg);
+}
+
+.border-main {
+  border: 1px solid var(--accent-color);
+  overflow: hidden;
+  width: 241px !important;
+  height: 252px !important;
+  top: -34%;
+  right: 92%;
+  transform: rotate(322deg);
+}
+
+/* Accent Color Shape */
+.shapes-view{
+  background-size: cover;
+  background-position: fixed;
+  position: relative;
+  overflow: hidden !important;
+}
+.shapes-view .shape{
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 7%;
+}
+#cta_section {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to right, #7b68ee, #6358d9);
+  background-size: cover;
+  background-position: fixed;
+  font-family: Arial, sans-serif;
+  position: relative;
+  overflow: hidden !important;
+}
+
+.cta-container {
+  position: relative;
+  text-align: center;
+  padding: 5% 0; /* Adjust padding as needed for responsiveness */
+}
+
+.cta-heading {
+  font-size: 4vw; /* Use vw units for font size to make it responsive */
+  color: #fff;
+  font-weight: 900;
+  margin-bottom: 20px;
+}
+
+.cta-subheading {
+  font-size: 2vw; /* Use vw units for font size to make it responsive */
+  color: #ccc;
+  margin-bottom: 3%; /* Adjust margin as needed for responsiveness */
+}
+
+/* Add media queries for responsiveness */
+@media (min-width: 768px) {
+  .cta-container {
+      padding: 3% 0; /* Adjust padding for larger screens */
+  }
+
+  .cta-heading {
+      font-size: 36px; /* Set a fixed font size for larger screens */
+  }
+
+  .cta-subheading {
+      font-size: 20px; /* Set a fixed font size for larger screens */
+  }
+}
+
+.cta-subheading {
+  font-size: 20px;
+  color: #ccc;
+  margin-bottom: 30px;
+}
+
+#cta_section .shape {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 7%;
+}
+.highlight-text {
+  background-color: #ffae42; /* Background highlight color */
+  color: #fff; /* White text color for highlighted text */
+  padding: 2px 5px; /* Add padding to the highlighted text */
+  border-radius: 3px; /* Add a slight border radius for visual appeal */
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2); /* Add a subtle drop shadow for emphasis */
+  font-weight: bold;
+}
+.shape-accent {
+  background-color: #FFC300;
+  overflow: hidden;
+  width: 200px !important;
+  height: 224px !important;
+  top: 67%;
+  right: -2%;
+  transform: rotate(45deg);
+}
+
+.border-accent {
+  border: 1px solid #FFC300;
+  overflow: hidden;
+  width: 127px !important;
+  height: 110px !important;
+  top: 59%;
+  right: -0.5%;
+  transform: rotate(45deg);
+}
+.shape-icon{
+  font-size: 127px;
+  color: #6459da;
+  top: 44%;
+  right: 83%;
+  transform: rotate(45deg);
+}
+.shape-icon-light{
+  font-size: 127px;
+  color: #7262e7;
+  top: -33%;
+  right: 15%;
+}
+.img-about-us{
+  width: 1164px;
+  height: 510px;
+  object-fit: cover;
+}
+.title-imprint{
+  font-weight: 500;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+
+}
+.profile-pic {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+.text-highlight{
+  color: black !important;
+  font-weight: 500;
+}

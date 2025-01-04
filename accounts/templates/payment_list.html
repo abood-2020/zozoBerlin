@@ -1,0 +1,92 @@
+{% extends 'base_account.html' %}
+{% load static %}
+
+{% block seo_block %}
+    <title>ZOZO Berlin | Payment List</title>
+    <meta name="description" content="Discover premium apartment rentals in Berlin with ZOZO Berlin. We offer 3 fully-furnished apartments perfect for short and long stays. Book your ideal accommodation in Berlin today!">
+    <meta name="keywords" content="Berlin apartments, furnished rentals Berlin, short-term rentals, long-term accommodation Berlin, vacation rentals Berlin, ZOZO Berlin, apartment booking Berlin">
+<style>
+      .card-custom {
+          border: 1px solid #ddd;
+          border-radius: 10px;
+          padding: 15px;
+          margin-bottom: 15px;
+      }
+      .calendar-icon {
+          font-size: 24px;
+          color: #28a745;
+      }
+      .payment-status {
+          text-align: right;
+          font-weight: bold;
+          color: #dc3545;
+      }
+      .reference-reservation {
+          font-weight: bold;
+          margin-top: 10px;
+      }
+      .total-price {
+          font-weight: bold;
+          font-size: 1.5rem;
+          margin-top: 10px;
+      }
+      .arrow-link {
+          text-align: right;
+      }
+  </style>
+{% endblock %}
+
+{% block content %}
+
+{% include "includes/sidebar.html" %}
+
+<div class="content">
+    <div class="section-title">
+        <div class="text">
+            <p>Payments</p>
+        </div>
+    </div>
+    <div class="row align-items-center">
+        {% if payments%}
+        <div class="table-responsive w-100">
+            <table class="table table-hover">
+            <thead class="table-light">
+                <tr>
+                    <th>#</th>
+                    <th>Date</th>
+                    <th>Booking</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for rec in payments %}
+                    <tr>
+                    <td>{{rec.forloop}}</td>
+                    <td>{{rec.date|date:'d/m/Y'}}</td>
+                    <td>{{rec.reservation}}</td>
+                    <td>{{rec.amount|floatformat:0}} $</td>
+                    <td>
+                        {% if rec.status == 'pending' %}
+                            <span class="status status-pending">Pending</span>
+                        {% elif rec.status == 'paid' %}
+                            <span class="status status-confirmed">Paid</span>
+                        {% elif rec.status == 'declined' %}
+                            <span class="status status-cancelled">Declined</span>
+                        {% endif %} 
+                    </td>
+                    <td><a href="" class="details-link"><i class="fa-solid fa-arrow-right"></i></a></td>
+                    </tr>
+                {% endfor%}
+            </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div class="d-flex justify-content-center">
+            No Payments Yet
+        </div>
+    {% endif %}
+  </div>
+  </div>
+{% endblock %}

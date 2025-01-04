@@ -1,0 +1,27 @@
+{% load widget_tweaks %}
+
+{% for field in form %}
+    <div class="mb-3">
+      {%if form.is_bound%}
+            {%if field.errors%}
+                <label for="">{{field.label_tag}}</label>
+                {% render_field field class="form-control is-invalid" %}
+                {%for error in field.errors%}
+                  <div class="invalid-feedback">{{error}}</div>
+                {%endfor%}
+            {%else%}
+                <label for="">{{field.label_tag}}</label>
+                {% render_field field class="form-control is-valid" %}
+            {%endif%}
+      {%else%}
+          <label for="">{{field.label_tag}}</label>
+          {% render_field field class="form-control"%}
+      {%endif%}
+    </div>
+    {%if field.help_text%}
+          <small class="form-text text-muted">
+          {% comment %} {{field.help_text}} {% endcomment %}
+          </small>
+    {%endif%}
+
+{% endfor %}

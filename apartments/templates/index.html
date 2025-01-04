@@ -1,0 +1,431 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block seo_block %}
+    <title>ZOZO Berlin | Premium Apartment Rentals in Berlin</title>
+    <meta name="description" content="Enjoy a stylish stay in centrally located apartments in Berlin's vibrant Prenzlauer Berg district. Perfect for short and long-term rentals. Book now at zozoberlin.com.">
+    <meta name="keywords" content="Flats for rent in Berlin, Prenzlauer Berg apartments, Berlin apartment rental, stylish stay Berlin, zozoberlin.com" />
+    <meta property="og:url" content="https://www.zozoberlin.com/" />
+    <meta property="og:type" content="website" />
+{% endblock %}
+
+{% block content %}
+    <!-- Landgin Page -->
+    <div class="container d-flex align-items-center min-vh-90" style="margin-top:50px" id="landing_page">
+        <div class="row w-100 justify-content-evenly">
+            <div class="col-md-6 d-flex flex-column justify-content-center" data-aos="fade-up">
+                <div class="hash d-none">
+                    <img src="{% static 'images/apartment.png' %}" width="24" />
+                    <span>Luxury Living Awaits </span>
+                </div>
+                <h1 class="display-4 landing-title">Exceptional <br> <span class="accent">Apartments,</span> <br> Unmatched Service</h1>
+                <p class="p-landing text"> Choose from our three exclusive apartments, each offering a unique and comfortable stay. </p>
+                <div class="mt-4">
+                    <a type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-main btn-lg me-2">Explore & Book</a>
+                    {% comment %} <a href="{% url 'contact_us' %}" class="btn btn-white">Contact Us</a> {% endcomment %}
+                </div>
+            </div>
+            <div class="col-md-6 d-flex justify-content-center align-items-center position-relative" data-aos="fade-left">
+                <img src="{% static 'images/landing_image.png' %}" class="img-landing img-effect" alt="Luxury apartment in Berlin for rent">
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-body">
+                <div class="row">
+                    <h1 class="modal-title fs-5 col" id="exampleModalLabel">Choose your perfect apartment now and start your luxurious stay!</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    
+                </div>
+  
+                <div class="row mt-4">
+                    {% for rec in apartments %}
+                        <div class="col-md-6 col-lg-4">
+                            <div class="apartments-box">
+                                <div class="image">
+                                    <img src="{{rec.main_image.url}}" />
+                                </div>
+                                <div class="p-3">
+                                    <div class="row justify-content-end">
+                                        <p class="col-8 fs-5 fw-bold mb-0">{{rec.title}}</p>
+                                        <p class="col-4 mb-0">
+                                            <span class="fw-bold fs-4 accent">{{rec.price_per_night|floatformat:0}}$ </span>
+                                            <span class="text-2">/night</span>
+                                        </p>
+                                    </div>
+                                    <span class="text-2" style="font-size:14px;">{{rec.location}}</span>
+                                </div>
+                                <div class="row px-3">
+                                    <p class="col-3">
+                                        <i class="fa-solid fa-wifi text-2"></i>
+                                           no
+                                    </p>
+                                    <p class="col-2">
+                                        <i class="fa-solid fa-bed text-2"></i>
+                                            4
+                                    </p>
+                                    <p class="col-2 ">
+                                        <i class="fa-solid fa-bath text-2"></i>
+                                          2
+                                    </p>
+                                    <p class="col text-end">
+                                        <a href="{% url "apartment_view" rec.id %}" class="text">
+                                             <i class="fa-solid fa-arrow-right fs-2 accent"></i></a>    
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <!-- End Landing Page  -->
+    <!-- section locations -->
+     
+    <div class="section-margin apartment-card">
+        <div class="container">
+            <div class="section-title text-center">
+                <h2 class="main-title font-title">Discover Three Unique Apartments, Each with Its Own Charm</h2>
+            </div>
+        </div>
+        <div class="container">
+            {% if apartment1 %}
+                <div class="row justify-content-between">
+                    <!-- First Section: Image Slider -->
+                    <div class="col-md-6 mb-4 slider-images position-relative">
+                        <div class="rental-price-box position-absolute" style="z-index:10 !important;">
+                            <span>{{apartment1.price_per_night|floatformat:0}}$</span>
+                            <span style="font-size:13px;">/night</span>
+                        </div>
+                        <div id="apartmentCarouselOne" class="carousel slide curved-corners image-slider carousel_apartment" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="{{apartment1.main_image.url}}" class="d-block w-100" alt="Apartment Image 1">
+                                </div>
+                                {% for obj in images_1 %}
+                                    <div class="carousel-item">
+                                        <img src="{{obj.image.url}}" class="d-block w-100" alt="{{obj.title}}">
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#apartmentCarouselOne" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#apartmentCarouselOne" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Second Section: Apartment Info -->
+                    <div class="col-md-6 d-flex flex-column content-apartment justify-content-center">
+                        <div class="p-4 curved-corners">
+                            <!-- Rating and Stars -->
+                            <div class="mb-3 ">
+                                <span class="fw-bold">4.9</span>
+                                <i class="fas fa-star text-dark"></i>
+                                <i class="fas fa-star text-dark"></i>
+                                <i class="fas fa-star text-dark"></i>
+                                <i class="fas fa-star text-dark"></i>
+                                <i class="fas fa-star text-dark"></i>
+                            </div>
+                            <!-- Apartment Name -->
+                            <p class="font-title accent" style="font-size:20px;">{{apartment1.promotional_text}}</p>
+                            <h2 >{{apartment1.title}}</h2>
+                            <!-- Apartment Description -->
+                            <p class="text"  style="font-size:14px;">{{apartment1.description}}</p>
+                            <!-- Apartment Features -->
+                            <div class="info-div ">
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" focusable="false" width="24" height="24" color="var(--token-545afc82-d790-4647-bdd0-17dca164eab2, rgb(0, 0, 0))" style="user-select: none; fill: var(--token-545afc82-d790-4647-bdd0-17dca164eab2, rgb(0, 0, 0)); color: var(--token-545afc82-d790-4647-bdd0-17dca164eab2, rgb(0, 0, 0)); flex-shrink: 0;"><g color="var(--token-545afc82-d790-4647-bdd0-17dca164eab2, rgb(0, 0, 0))" weight="regular"><path d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z"></path></g></svg>
+                                    1- {{apartment1.max_guests}} guests
+                                </span>
+                            </div>
+                            <div class="info-div">
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" focusable="false" width="24" height="24" color="var(--token-545afc82-d790-4647-bdd0-17dca164eab2, rgb(0, 0, 0))" style="user-select: none; fill: var(--token-545afc82-d790-4647-bdd0-17dca164eab2, rgb(0, 0, 0)); color: var(--token-545afc82-d790-4647-bdd0-17dca164eab2, rgb(0, 0, 0)); flex-shrink: 0;"><g color="var(--token-545afc82-d790-4647-bdd0-17dca164eab2, rgb(0, 0, 0))" weight="regular"><path d="M128,64a40,40,0,1,0,40,40A40,40,0,0,0,128,64Zm0,64a24,24,0,1,1,24-24A24,24,0,0,1,128,128Zm0-112a88.1,88.1,0,0,0-88,88c0,31.4,14.51,64.68,42,96.25a254.19,254.19,0,0,0,41.45,38.3,8,8,0,0,0,9.18,0A254.19,254.19,0,0,0,174,200.25c27.45-31.57,42-64.85,42-96.25A88.1,88.1,0,0,0,128,16Zm0,206c-16.53-13-72-60.75-72-118a72,72,0,0,1,144,0C200,161.23,144.53,209,128,222Z"></path></g></svg>
+                                </i> {{apartment1.location}}</span>
+                            </div>
+                            <div class="info-div">
+                                <span class=""><i class="fas fa-wifi"></i> Wi-Fi</span>
+                            </div>
+                            <div class="info-div">
+                                <span><i class="fa-solid fa-square-parking"></i> Garden</span>
+                            </div>
+
+                            <!-- Buttons -->
+                            <div class="my-3">
+                                <a href="{% url 'reservation_page' apartment1.id %}" class="btn btn-main me-2">Book Now</a>
+                                <a href="{% url 'apartment_view' apartment1.id %}" class="btn btn-white me-2">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            {% if apartment2 %}
+                <div class="row justify-content-between">
+                    <!-- First Section: Image Slider -->
+                    <div class="col-md-6 mb-4 slider-images position-relative responsive-view">
+                        <div class="rental-price-box position-absolute" style="z-index:10 !important;">
+                            <span>{{apartment2.price_per_night|floatformat:0}}$</span>
+                            <span style="font-size:13px;">/night</span>
+                        </div>
+                        <div id="apartmentCarousel" class="carousel slide curved-corners image-slider carousel_apartment" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="{{apartment2.main_image.url}}" class="d-block w-100" alt="Apartment Image 1">
+                                </div>
+                                {% for obj in images_2 %}
+                                    <div class="carousel-item">
+                                        <img src="{{obj.image.url}}" class="d-block w-100" alt="{{obj.title}}">
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#apartmentCarousel" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#apartmentCarousel" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>                    
+                    <!-- Second Section: Apartment Info -->
+                    <div class="col-md-6 d-flex flex-column justify-content-center content-apartment">
+                        <div class="p-4 curved-corners">
+                            <!-- Rating and Stars -->
+                            <div class="mb-3 ">
+                                <span class="fw-bold">4.9</span>
+                                <i class="fas fa-star text-dark"></i>
+                                <i class="fas fa-star text-dark"></i>
+                                <i class="fas fa-star text-dark"></i>
+                                <i class="fas fa-star text-dark"></i>
+                                <i class="fas fa-star text-dark"></i>
+                            </div>
+                            <!-- Apartment Name -->
+                            <p class="font-title accent" style="font-size:20px;">{{apartment2.promotional_text}}</p>
+                            <h2 class="fw-normal">{{apartment2.title}}</h2>
+                            <!-- Apartment Description -->
+                            <p class="text"  style="font-size:14px;">{{apartment2.description}}</p>
+                            <!-- Apartment Features -->
+                            <div class="info-div ">
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" focusable="false" width="24" height="24" color="var(--token-545afc82-d790-4647-bdd0-17dca164eab2, rgb(0, 0, 0))" style="user-select: none; fill: var(--token-545afc82-d790-4647-bdd0-17dca164eab2, rgb(0, 0, 0)); color: var(--token-545afc82-d790-4647-bdd0-17dca164eab2, rgb(0, 0, 0)); flex-shrink: 0;"><g color="var(--token-545afc82-d790-4647-bdd0-17dca164eab2, rgb(0, 0, 0))" weight="regular"><path d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z"></path></g></svg>
+                                    1- {{apartment2.max_guests}} guests
+                                </span>
+                            </div>
+                            <div class="info-div">
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" focusable="false" width="24" height="24" color="var(--token-545afc82-d790-4647-bdd0-17dca164eab2, rgb(0, 0, 0))" style="user-select: none; fill: var(--token-545afc82-d790-4647-bdd0-17dca164eab2, rgb(0, 0, 0)); color: var(--token-545afc82-d790-4647-bdd0-17dca164eab2, rgb(0, 0, 0)); flex-shrink: 0;"><g color="var(--token-545afc82-d790-4647-bdd0-17dca164eab2, rgb(0, 0, 0))" weight="regular"><path d="M128,64a40,40,0,1,0,40,40A40,40,0,0,0,128,64Zm0,64a24,24,0,1,1,24-24A24,24,0,0,1,128,128Zm0-112a88.1,88.1,0,0,0-88,88c0,31.4,14.51,64.68,42,96.25a254.19,254.19,0,0,0,41.45,38.3,8,8,0,0,0,9.18,0A254.19,254.19,0,0,0,174,200.25c27.45-31.57,42-64.85,42-96.25A88.1,88.1,0,0,0,128,16Zm0,206c-16.53-13-72-60.75-72-118a72,72,0,0,1,144,0C200,161.23,144.53,209,128,222Z"></path></g></svg>
+                                </i> {{apartment2.location}}</span>
+                            </div>
+                            <div class="info-div">
+                                <span class=""><i class="fas fa-wifi"></i> Wi-Fi</span>
+                            </div>
+                            <div class="info-div">
+                                <span><i class="fa-solid fa-square-parking"></i> Garden</span>
+                            </div>
+
+                            <!-- Buttons -->
+                            <div class="my-3">
+                                <a href="{% url 'reservation_page' apartment2.id %}" class="btn btn-main me-2">Book Now</a>
+                                <a href="{% url 'apartment_view' apartment2.id %}" class="btn btn-white me-2">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- First Section: Image Slider -->
+                    <div class="col-md-6 mb-4 slider-images position-relative pc-view">
+                        <div class="rental-price-box position-absolute" style="z-index:10 !important;">
+                            <span>{{apartment2.price_per_night|floatformat:0}}$</span>
+                            <span style="font-size:13px;">/night</span>
+                        </div>
+                        <div id="apartmentCarousel" class="carousel slide curved-corners image-slider carousel_apartment" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="{{apartment2.main_image.url}}" class="d-block w-100" alt="Apartment Image 1">
+                                </div>
+                                {% for obj in images_2 %}
+                                    <div class="carousel-item">
+                                        <img src="{{obj.image.url}}" class="d-block w-100" alt="{{obj.title}}">
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#apartmentCarousel" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#apartmentCarousel" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            {% if apartment3 %}
+            <div class="row justify-content-between">
+                <!-- First Section: Image Slider -->
+                <div class="col-md-6 mb-4 slider-images position-relative">
+                    <div class="rental-price-box position-absolute" style="z-index:10 !important;">
+                        <span>{{apartment3.price_per_night|floatformat:0}}$</span>
+                        <span style="font-size:13px;">/night</span>
+                    </div>
+                    <div id="apartmentCarouselOne" class="carousel slide curved-corners image-slider carousel_apartment" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="{{apartment3.main_image.url}}" class="d-block w-100" alt="Apartment Image 1">
+                            </div>
+                            {% for obj in images_3 %}
+                                <div class="carousel-item">
+                                    <img src="{{obj.image.url}}" class="d-block w-100" alt="{{obj.title}}">
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#apartmentCarouselOne" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#apartmentCarouselOne" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Second Section: Apartment Info -->
+                <div class="col-md-6 d-flex flex-column content-apartment justify-content-center">
+                    <div class="p-4 curved-corners">
+                        <!-- Rating and Stars -->
+                        <div class="mb-3 ">
+                            <span class="fw-bold">4.9</span>
+                            <i class="fas fa-star text-dark"></i>
+                            <i class="fas fa-star text-dark"></i>
+                            <i class="fas fa-star text-dark"></i>
+                            <i class="fas fa-star text-dark"></i>
+                            <i class="fas fa-star text-dark"></i>
+                        </div>
+                        <!-- Apartment Name -->
+                        <p class="font-title accent" style="font-size:20px;">{{apartment3.promotional_text}}</p>
+                        <h2 >{{apartment3.title}}</h2>
+                        <!-- Apartment Description -->
+                        <p class="text"  style="font-size:14px;">{{apartment3.description}}</p>
+                        <!-- Apartment Features -->
+                        <div class="info-div ">
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" focusable="false" width="24" height="24" color="var(--token-545afc82-d790-4647-bdd0-17dca164eab2, rgb(0, 0, 0))" style="user-select: none; fill: var(--token-545afc82-d790-4647-bdd0-17dca164eab2, rgb(0, 0, 0)); color: var(--token-545afc82-d790-4647-bdd0-17dca164eab2, rgb(0, 0, 0)); flex-shrink: 0;"><g color="var(--token-545afc82-d790-4647-bdd0-17dca164eab2, rgb(0, 0, 0))" weight="regular"><path d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z"></path></g></svg>
+                                1- {{apartment3.max_guests}} guests
+                            </span>
+                        </div>
+                        <div class="info-div">
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" focusable="false" width="24" height="24" color="var(--token-545afc82-d790-4647-bdd0-17dca164eab2, rgb(0, 0, 0))" style="user-select: none; fill: var(--token-545afc82-d790-4647-bdd0-17dca164eab2, rgb(0, 0, 0)); color: var(--token-545afc82-d790-4647-bdd0-17dca164eab2, rgb(0, 0, 0)); flex-shrink: 0;"><g color="var(--token-545afc82-d790-4647-bdd0-17dca164eab2, rgb(0, 0, 0))" weight="regular"><path d="M128,64a40,40,0,1,0,40,40A40,40,0,0,0,128,64Zm0,64a24,24,0,1,1,24-24A24,24,0,0,1,128,128Zm0-112a88.1,88.1,0,0,0-88,88c0,31.4,14.51,64.68,42,96.25a254.19,254.19,0,0,0,41.45,38.3,8,8,0,0,0,9.18,0A254.19,254.19,0,0,0,174,200.25c27.45-31.57,42-64.85,42-96.25A88.1,88.1,0,0,0,128,16Zm0,206c-16.53-13-72-60.75-72-118a72,72,0,0,1,144,0C200,161.23,144.53,209,128,222Z"></path></g></svg>
+                            </i> {{apartment3.location}}</span>
+                        </div>
+                        <div class="info-div">
+                            <span class=""><i class="fas fa-wifi"></i> Wi-Fi</span>
+                        </div>
+                        <div class="info-div">
+                            <span><i class="fa-solid fa-square-parking"></i> Garden</span>
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="my-3">
+                            <a href="{% url 'reservation_page' apartment3.id %}" class="btn btn-main me-2">Book Now</a>
+                            <a href="{% url 'apartment_view' apartment3.id %}" class="btn btn-white me-2">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        </div>
+    </div>
+    <!-- End section locations --> 
+    <section class="w-100 py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center fw-bold section-title">Why Choose ZOZO Berlin</h2>
+            <div class="row text-center justify-content-center">
+                <div class="col-md-4 col-lg-3 mb-4">
+                    <div class="icon-box mx-auto">
+                        <img width="50" src="{% static 'images/convenient.png' %}" alt=""/>
+                    </div>
+                    <h3 class="h5 fw-bold mb-2">Comfort of Home</h3>
+                    <p class="text-muted-foreground">Experience the warmth and comfort of a true home away from home.</p>
+                </div>
+                <div class="col-md-4 col-lg-3 mb-4">
+                    <div class="icon-box mx-auto">
+                        <img width="50" src="{% static 'images/location.png' %}" alt=""/>
+                    </div>
+                    <h3 class="h5 fw-bold mb-2">Prime Locations</h3>
+                    <p class="text-muted-foreground">Our apartments are situated in the most desirable areas of the city.</p>
+                </div>
+                <div class="col-md-4 col-lg-3 mb-4">
+                    <div class="icon-box mx-auto">
+                        <img width="50" src="{% static 'images/customer-service.png' %}" alt=""/>
+                    </div>
+                    <h3 class="h5 fw-bold mb-2">Exceptional Service</h3>
+                    <p class="text-muted-foreground">Enjoy personalized attention and 24/7 support during your stay.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Feedback Customers -->
+    <div class="section-margin customers-feedback">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-12">
+                    <div class="section-title">
+                        <h2 class="main-title ">What Our Guests Say</h2>
+                    </div>            
+                </div>
+                
+                <div class="col-md-8 col-sm-12">
+                    <div class="row">
+                    {% for rec in reviews %}
+                        {% include 'includes/review_card.html' %}
+                    {% endfor %}
+                    </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Section Feedback Customers -->
+
+    <!-- Section FAQ Section -->
+    <div class="faq-section py-5">
+        <div class="container">
+            <div class="row justify-content-evenly">
+                <div class="col-md-4 col-sm-12">
+                    <div class="section-title">
+                        <h2 class="main-title ">Frequently Asked Questions</h2>
+                    </div>            
+                </div>
+                <div class="col-md-8 col-sm-12">
+                    <div class="accordion" id="faqAccordion">
+                        {% for rec in FAQ %}
+                            <div class="accordion-item mb-3 accordion-faq">
+                                <h2 class="accordion-header" id="headingOne{{forloop.counter}}">
+                                    <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne{{forloop.counter}}" aria-expanded="false" aria-controls="collapseOne">
+                                         {{rec.question}}
+                                    </button>
+                                </h2>
+                                <div id="collapseOne{{forloop.counter}}" class="accordion-collapse collapse" aria-labelledby="headingOne{{forloop.counter}}" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body p-3">
+                                        {{rec.answer}}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Section FAQ Section -->  
+</div>
+{% endblock %}

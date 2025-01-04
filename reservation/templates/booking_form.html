@@ -1,0 +1,278 @@
+{% extends 'base_account.html' %}
+{% load static %}
+
+{% block seo_block %}
+    <title>ZOZO Berlin | New Booking</title>
+    <meta name="description" content="Discover premium apartment rentals in Berlin with ZOZO Berlin. We offer 3 fully-furnished apartments perfect for short and long stays. Book your ideal accommodation in Berlin today!">
+    <meta name="keywords" content="Berlin apartments, furnished rentals Berlin, short-term rentals, long-term accommodation Berlin, vacation rentals Berlin, ZOZO Berlin, apartment booking Berlin">
+    <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/airbnb.css">
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container my-4 booking_details" >
+        <div class="my-4">
+            <h2 class="">Book Your Stay</h2>
+            <span class="text-2"> Enter your travel dates to reserve this apartment.</span>
+        </div>
+
+        <div class="row justify-content-between">
+            <div class="col-md-6 mb-4 ">
+                <div class="p-3">
+                    <form id="reservationForm" method="POST">
+                        {% csrf_token %}
+                        <!-- Booking Details -->
+                        <div class="row mb-4">
+                            <div class="col">
+                                <label for="arrivalDate">Check in<span class="text-danger">*</span> </label>
+                                <input type="text" name="start_date" class="form-control" id="dateFrom" placeholder="">
+                            </div>
+                            <div class="col">
+                                <label for="departureDate">Check out<span class="text-danger">*</span></label>
+                                <input type="text" name="end_date" class="form-control" id="dateTo" placeholder="">
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label for="numberOfPeople">Number of Guests<span class="text-danger">*</span></label>
+                            <select class="form-select" name="num_guest">
+                                {% for rec in apartment_guest %}
+                                    <option value="{{rec}}">{{rec}} Guests</option>
+                                {% endfor %}
+                              </select>
+                                                          {% comment %} <input type="number" name="num_guest" class="form-control" id="numberOfPeople" placeholder="Guests" required> {% endcomment %}
+                        </div>
+                        <div class="mb-4">
+                            <label for="specialRequests"> Requests<span class="text-danger">*</span></label>
+                            <input class="form-control" type="text" name="notes" id="specialRequests" placeholder="Your Request" />
+                        </div>
+
+                        <!-- Confirmation and Approval -->
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" name="reservation_terms" class="form-check-input" id="termsConditions" required>
+                            <label for="termsConditions" class="form-check-label">I agree to the <a href="/terms">terms and conditions</a> and cancellation policy</label>
+                        </div>
+                        <input type="submit" class="btn btn-main w-100" name="submit" value="Procced to Confirmation" />
+                    </form>
+                </div>
+                
+
+            </div>
+            <!-- Apartment Details Box -->
+            <div class="col-md-6 mb-4">
+                <div class="border rounded  p-3">
+                    <div class="d-flex align-items-center">
+                        <img src="{{apartment.main_image.url}}" alt="Apartment Image" class="rounded me-3 mb-2 image-apartment" >
+                        <div>
+                            <h3 class="fs-16">{{apartment.title}} </h3>
+                            <p class="mb-1 text"  style="font-size:14px;">
+                                <svg data-id="52" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><line x1="2" x2="5" y1="12" y2="12"></line><line x1="19" x2="22" y1="12" y2="12"></line><line x1="12" x2="12" y1="2" y2="5"></line><line x1="12" x2="12" y1="19" y2="22"></line><circle cx="12" cy="12" r="7"></circle></svg>
+                                {{apartment.location}} 
+                            </p>
+                            <span>
+                                <i class="fas fa-star checked"></i>
+                                <span class="fw-normal">4.9</span>
+                                <span class="fw-normal text" style="font-size:14px">(8 Reviews)</span>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- Payment Details -->
+                    <div class="mt-4">
+                        <h5>Price details </h5>
+                        <div class="d-flex justify-content-between mt-2">
+                            <p>
+                                <span class="fw-normal text">
+                                    $ {{apartment.price_per_night|floatformat:0}} x
+                                    <span class="fw-semibold" id="num_night">0</span> 
+                                    <span>nights</sapn>     
+                                </sapn> 
+                            </p>
+                            <span id="sub_total">$1500</span>
+                        </div>
+                        <div class="d-flex justify-content-between mt-2" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Tooltip on bottom">
+                            <span class="text" style="font-size:14px;" >Cleaning Fee</span>
+                            <span>$ {{apartment.cleaning_fee}}</span>
+                        </div>
+                        {% comment %} <div id="discount_section"class="discount-section justify-content-between mt-2">
+                            <span class="text" style="font-size:14px;">Weekly discount: (8%)</span>
+                            <span id="discountAmount">$ </span>
+                        </div> {% endcomment %}
+                        <hr>
+                        <div class="d-flex justify-content-between mt-2">
+                            <span>Total</span>
+                            <p class="fs-5 fw-bold" id="totalPrice">$2000</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+{% endblock %}
+{% block js_code %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/en.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // Sample reserved dates
+        const reservedDates = [
+            {% for start_date, end_date in reservation_date %} 
+                { from: '{{ start_date }}', to: '{{ end_date }}' }{% if not forloop.last %},{% endif %}
+            {% endfor %}
+        ];
+
+        const format = "Y-m-d";
+        const today = new Date().toISOString().split('T')[0]; // الحصول على تاريخ اليوم بتنسيق YYYY-MM-DD
+
+        function getReservedDates() {
+            return reservedDates.flatMap(range => {
+                const dates = [];
+                const start = new Date(range.from);
+                const end = new Date(range.to);
+                for (let d = start; d <= end; d.setDate(d.getDate() + 1)) {
+                    dates.push(new Date(d).toISOString().split('T')[0]);
+                }
+                return dates;
+            });
+        }
+
+        const reservedDatesList = getReservedDates();
+
+        function getMaxEndDate(startDate) {
+            for (let range of reservedDates) {
+                if (new Date(startDate) < new Date(range.from)) {
+                    let maxEndDate = new Date(range.from);
+                    maxEndDate.setDate(maxEndDate.getDate() - 1);
+                    return maxEndDate;
+                }
+            }
+            return null;
+        }
+
+        const dateFromPicker = flatpickr("#dateFrom", {
+            dateFormat: format,
+            disable: reservedDatesList,
+            minDate: today, // منع اختيار تاريخ في الماضي
+            onChange: function(selectedDates, dateStr, instance) {
+                const startDate = selectedDates[0];
+                const maxEndDate = getMaxEndDate(startDate);
+                const dateToPicker = flatpickr("#dateTo", {
+                    dateFormat: format,
+                    disable: reservedDatesList,
+                    minDate: startDate,
+                    maxDate: maxEndDate ? maxEndDate : null,
+                    onChange: function() {
+                        dateToPicker.destroy(); // Destroy to avoid duplicate initialization
+                    }
+                });
+            }
+        });
+
+        const dateToPicker = flatpickr("#dateTo", {
+            dateFormat: format,
+            disable: reservedDatesList,
+            minDate: today, // منع اختيار تاريخ في الماضي
+            onChange: function(selectedDates, dateStr, instance) {
+                const endDate = selectedDates[0];
+                const dateFromPicker = flatpickr("#dateFrom", {
+                    dateFormat: format,
+                    disable: reservedDatesList,
+                    maxDate: endDate,
+                    onChange: function() {
+                        dateFromPicker.destroy(); // Destroy to avoid duplicate initialization
+                    }
+                });
+            }
+        });
+    });
+</script>
+
+<script>
+    // Function to calculate and update the subtotal and total price
+    function calculatePrices() {
+        // Get the price per night and cleaning fee
+        var pricePerNight = parseFloat("{{apartment.price_per_night|floatformat:0}}");
+        var cleaningFee = parseFloat("{{apartment.cleaning_fee}}");
+        var discount = 0;
+
+
+        // Get the start and end dates from the form
+        var startDate = document.getElementById("dateFrom").value;
+        var endDate = document.getElementById("dateTo").value;
+
+        // Check if both dates are provided
+        if (startDate && endDate) {
+            // Convert dates to Date objects
+            var start = new Date(startDate);
+            var end = new Date(endDate);
+
+            // Calculate the number of nights
+            var timeDifference = end.getTime() - start.getTime();
+            var numberOfNights = timeDifference / (1000 * 3600 * 24);
+
+            // Update the number of nights displayed
+            document.getElementById("num_night").textContent = numberOfNights;
+
+            // Calculate subtotal (price per night * number of nights)
+            var subtotal = pricePerNight * numberOfNights;
+
+            // Update the subtotal displayed
+            document.getElementById("sub_total").textContent = "$" + subtotal.toFixed(2);
+
+            // Calculate total price (subtotal + cleaning fee)
+
+            // Update the total price displayed
+            // if (numberOfNights > 7) {
+            //    discount = subtotal * 0.08; // 8% discount
+            //    document.getElementById("discount_section").style.display = "flex";
+            //    document.getElementById("discountAmount").textContent = "-$" + discount.toFixed(2);
+            //    var totalPrice = subtotal + cleaningFee - discount ;
+            //    document.getElementById("totalPrice").textContent = "$" + totalPrice.toFixed(2);
+
+            //} 
+           // else{
+                var totalPrice = subtotal + cleaningFee;
+                document.getElementById("totalPrice").textContent = "$" + totalPrice.toFixed(2);
+
+            //}
+        } else {
+            // If dates are not available, set subtotal and total to 0
+            document.getElementById("num_night").textContent = 0;
+            document.getElementById("sub_total").textContent = "$0.00";
+            document.getElementById("totalPrice").textContent = "$0.00";
+        }
+    }
+
+    // Attach event listeners to date input fields to recalculate prices when dates change
+    document.getElementById("dateFrom").addEventListener("change", calculatePrices);
+    document.getElementById("dateTo").addEventListener("change", calculatePrices);
+
+    // Call the function on page load to initialize the values
+    window.onload = calculatePrices;
+</script>
+<script>
+    $(document).ready(function() {
+        $.ajax({
+            url: '{% url "check_existing_reservation" %}',
+            type: 'GET',
+            dataType: 'json',
+            success: function(response) {
+                if (response.has_unconfirmed_reservation) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Reservation Not Allowed',
+                        text: 'You already have a pending reservation. Please confirm it before making a new reservation.',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Redirect to the reservation list page
+                            window.location.href = '{% url "reservation_list" %}';
+                        }
+                    });
+                }
+            }
+        });
+    });
+</script>
+{% endblock %}

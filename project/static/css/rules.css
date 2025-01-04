@@ -1,0 +1,195 @@
+:root {
+    --accent-color: #e11d48;
+    --accent-dark-color: #251216;
+    --primary-color: #E1D3C1;
+    --text-color: #6b7280;
+    --border-line : #bebebe;
+    --light-text-color: #a5a5a5;
+    --bg-color: #ecb5afd4;
+    --white-color: #ffffff;
+    --green-color: #22c55e;
+    --yellow-color: #eab30c;
+    --red-color : #ef4444;
+    --black-color:
+
+  }
+  .font-title{
+    font-family: "Lobster", sans-serif;
+  }
+  .accent {
+    color: var(--accent-color) !important;
+  }
+  a{
+    text-decoration: none !important;
+  }
+  .breadcrumb-custom{
+    font-size: 14px;
+    color: black;
+    padding: 10px 0px 20px;
+  }
+  .breadcrumb-custom a{font-size: 18px;color: black;}
+  .breadcrumb-custom i{font-size:14px;}
+
+  .breadcrumb-custom:hover, breadcrumb-custom a:hover{
+    color: var(--accent-color) !important;
+  }
+  
+  .primary {
+    color: var(--primary-color);
+  }
+  
+  .text {
+    color: var(--text-color);
+  }
+  .text-2 {
+    color: var(--light-text-color);
+  }
+  .btn{
+    border-radius: 5px !important ;
+    font-size: 15px !important;
+    padding: 7px 28px !important;
+    font-weight: 400 !important;
+    transition: transform 300ms ease !important;
+  }
+  .fs-14{font-size:14px;}
+  .fs-16{font-size:16px;}
+  .fs-18{font-size:18px;}
+  .fs-20{font-size:20px;}
+  .fw-500{font-weight:500;}
+  .btn-main{
+    color: white !important;
+    background-color: var(--accent-color) !important;
+  }
+  .btn-main:hover{
+    background-color: var(--accent-dark-color) !important;
+    /* transform: scale(0.95) !important; */
+  }
+  .btn-main:focus{
+    box-shadow: none !important;
+    outline: none;
+  }
+  .btn-white{
+    color: var(--accent-color);
+    background-color: white;
+    border: 2px solid var(--accent-color) !important;
+  }
+  .btn-white:hover{
+    color: white !important;
+    background-color: var(--accent-color) !important;
+    /* transform: scale(0.95) !important; */
+  }
+  .background-accent {
+    background-color: var(--accent-color) !important;
+  }
+  
+  .background-primary {
+    background-color: var(--primary-color);
+  }
+  
+  .background-text {
+    background-color: var(--text-color);
+  }
+  .status{
+    font-weight: bold;
+    background-color: #f4f4f5; /* خلفية برتقالية */
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+  .status-pending {
+    color: #ff9800; /* لون النص أبيض */
+}
+.status-pending_approval {
+    color: #3f51b5; /* لون أزرق */
+}
+.status-confirmed {
+    color: #4caf50; /* لون أخضر */
+}
+.status-cancelled {
+    color: #f44336; /* لون أحمر */
+}  
+.icon-border{
+    border: 1px solid rgba(184, 175, 175, 0.497);
+    width: 34px;
+    height: 34px;
+    text-align: center;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.circle-image{
+    object-fit: cover;
+}
+.m-0{
+    margin:0px 0px 0px 10px!important;
+}
+.tab-feature{
+    border: none !important;
+    color: var(--accent-color);
+}
+a.tab-feature.active{
+    position: relative;
+}
+a.tab-feature.active::after{
+    content: '';
+    position: absolute;
+    width: 20%;
+    height: 12%;
+    background-color: var(--accent-color);
+    left: 15px;
+    border-radius: 5px;
+    bottom: 0;
+
+}
+ul.nav-tabs{
+    margin-bottom: 30px;
+    border: none;
+}
+
+/* Components */
+/* Main Heading */
+.section-margin{
+  margin-top: 50px;
+}
+.section-title{
+  margin: 50px 0px;
+}
+.section-title .main-title{
+  font-size: 28px;
+  font-weight: 500;
+  color: #222222;
+}
+.section-title .text{
+  width: 45%;
+}
+.section-title .text p{
+  font-size: 28px;
+  line-height: 1.07
+}
+@media (max-width: 1024px){
+  .section-title .text{
+    width: 80%;
+  }
+}
+@media (max-width: 600px) {
+  .section-title .text{
+    width: 100%;
+  }
+}
+
+.fit-cover{
+  object-fit: cover;
+}
+
+.form-control{
+  margin-top: 8px !important;
+  border-radius: 0px !important;
+}
+.form-control:focus {
+  color: #212529 !important;
+  background-color: #fff !important;
+  border-color: var(--accent-color) !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+}

@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block seo_block %}
+    <title>ZOZO Berlin | FAQ </title>
+    <meta name="description" content="Discover premium apartment rentals in Berlin with ZOZO Berlin. We offer 3 fully-furnished apartments perfect for short and long stays. Book your ideal accommodation in Berlin today!">
+    <meta name="keywords" content="Berlin apartments, furnished rentals Berlin, short-term rentals, long-term accommodation Berlin, vacation rentals Berlin, ZOZO Berlin, apartment booking Berlin">
+
+{% endblock %}
+
+{% block content %}
+<div class="faq-section py-5">
+    <div class="container">
+        <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'main_page'%}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">FAQ</li>
+            </ol>
+        </nav>
+        <div class="row justify-content-evenly">
+            <div class="col-4">
+                <div class="section-title">
+                    <h2 class="main-title"></h2>
+                    <div class="text" style="width:100%">
+                        <p>Booking</p>
+                    </div>
+                </div>            
+            </div>
+            <div class="col-8">
+                <div class="accordion" id="faqAccordion">
+                    {% for rec in FAQ_booking %}
+                        <div class="accordion-item mb-3 accordion-faq">
+                            <h2 class="accordion-header" id="headingOne{{forloop.counter}}">
+                                <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne{{forloop.counter}}" aria-expanded="false" aria-controls="collapseOne">
+                                     {{rec.question}}
+                                </button>
+                            </h2>
+                            <div id="collapseOne{{forloop.counter}}" class="accordion-collapse collapse" aria-labelledby="headingOne{{forloop.counter}}" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body p-3">
+                                    {{rec.answer}}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="faq-section py-5">
+    <div class="container">
+        <div class="row justify-content-evenly">
+            <div class="col-4">
+                <div class="section-title">
+                    <h2 class="main-title"></h2>
+                    <div class="text" style="width:100%">
+                        <p>Payments</p>
+                    </div>
+                </div>            
+            </div>
+            <div class="col-8">
+                <div class="accordion" id="faqAccordion">
+                    {% for rec in FAQ_payments %}
+                        <div class="accordion-item mb-3 accordion-faq">
+                            <h2 class="accordion-header" id="headingPayment{{forloop.counter}}">
+                                <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#collapsPayment{{forloop.counter}}" aria-expanded="false" aria-controls="collapseOne">
+                                     {{rec.question}}
+                                </button>
+                            </h2>
+                            <div id="collapsPayment{{forloop.counter}}" class="accordion-collapse collapse" aria-labelledby="headingPayment{{forloop.counter}}" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body p-3">
+                                    {{rec.answer}}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+{% endblock %}

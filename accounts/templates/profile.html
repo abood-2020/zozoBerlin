@@ -1,0 +1,141 @@
+{% extends 'base_account.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block seo_block %}
+    <title>ZOZO Berlin | My Profile</title>
+    <meta name="description" content="Discover premium apartment rentals in Berlin with ZOZO Berlin. We offer 3 fully-furnished apartments perfect for short and long stays. Book your ideal accommodation in Berlin today!">
+    <meta name="keywords" content="Berlin apartments, furnished rentals Berlin, short-term rentals, long-term accommodation Berlin, vacation rentals Berlin, ZOZO Berlin, apartment booking Berlin">
+{% endblock %}
+
+{% block content %}
+<div class="container my-4 booking_details" >
+    <nav class="breadcrumb-custom d-flex align-items-center">
+            <i class="fa-solid fa-chevron-left px-2"></i>
+            <a href="{% url 'reservation_list' %}">Dashboard</a>
+    </nav>
+    <form id="reservationForm" method="POST" action="{% url 'Profile'  %}">
+      {% csrf_token %}
+        <!-- Reservation Details Header -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h2>Personal Information</h2>
+            </div>
+            <div>
+                <input type="submit" class="btn btn-white me-2" value="Save Changes" />
+            </div>
+        </div>
+        {% if update_success %}
+          <div class="alert alert-success" role="alert">
+            Your profile data has been updated successfully.
+          </div>
+        {% endif %}
+        
+        <!-- Details Section -->
+        <div class="row justify-content-between">
+            <!-- Reservation Details Box -->
+            <div class="col-md-6 mb-4 ">
+                <div class="p-4 border rounded reservation-box">
+                    <h4 class="fw-bold">Basic information</h4>
+                    <p class="text" style="font-size:14px;">Manage your personal details and contact information.</p>
+                    <!-- Booking Details -->
+                    <div class="col mb-3 ">
+                      <label for="username" class="col-sm-2 col-form-label">Username</label>
+                      <input class="form-control" type="text" value="{{user.username}}" name="username" disabled readonly>
+                    </div>
+                    <div class="row">
+                        <div class="col mb-3 ">
+                          <label for="first_name" class="form-label">First Name</label>
+                          <input type="text" class="form-control" value="{{user.first_name}}" name="first_name" placeholder="First name" aria-label="First name">
+                        </div>
+                        <div class="col mb-3 ">
+                          <label for="last_name" class="form-label">Last Name</label>
+                          <input type="text" class="form-control" value="{{user.last_name}}" name="last_name" placeholder="Last name" aria-label="Last name">
+                        </div>
+                    </div>
+                    <div class="col mb-3 ">
+                      <label for="phone_number" class="form-label">Phone</label>
+                      <input type="text" class="form-control" value="{{profile.phone_number}}" name="phone_number" placeholder="Phone Number">
+                    </div>
+                    <div class="col mb-3 ">
+                      <label for="email" class="form-label">Email</label>
+                      <input type="email" class="form-control" value="{{user.email}}" name="email" placeholder="Email">
+                    </div>
+                    <div class="col mb-3 ">
+                      <label for="address" class="form-label">Address</label>
+                      <input type="text" class="form-control" value="{{profile.address}}" name="address" placeholder="Address">
+                    </div>
+                    <div class="col mb-3 ">
+                      <label for="brith_date" class="form-label">Birth Date</label>
+                      <input type="date" class="form-control" value="{{ profile.date_of_birth | date:'Y-m-d'}}" name="birth_date" placeholder="Birth Date">
+                    </div>    
+                </div>
+            </div>
+            <!-- Apartment Details Box -->
+            <div class="col-md-6 mb-4">
+                <div class="p-4 border rounded">
+                  <h4 class="fw-bold">Account Settings.</h4>
+                  <p class="text" style="font-size:14px;">Manage your account preferences and security settings.</p>
+                  <div class=" mt-3">
+                    <div class="mb-4">
+                      <h6 class="mb-2 fs-20">Change Picture</h6>
+                      <p class="text-muted mt-2 fs-14">Clicking this button will take you to a secure page to change your
+                        Picture.</p>
+                      <a class="btn btn-main" href="{% url 'change_password' %}">Change Picture</a>
+                    </div>
+
+                    <div class="mb-4">
+                      <h6 class="mb-2 fs-20">Change Password</h6>
+                      <p class="text-muted mt-2 fs-14">Clicking this button will take you to a secure page to change your
+                        password.</p>
+                      <a class="btn btn-main" href="{% url 'account_change_password' %}">Change Password</a>
+                    </div>
+                    <div class="mb-4">
+                      <h6 class="mb-2 fs-20">Notification Settings</h6>
+                      <div class="form-check form-switch mb-2">
+                          <input class="form-check-input custom-switch" type="checkbox" id="email-notifications">
+                          <label class="form-check-label" for="email-notifications">Email Notifications</label>
+                      </div>
+                  </div>
+                  <div class="mb-4">
+                    <div class="mb-4">
+                      <h6 class="mb-2 fs-20">Delete Account</h6>
+                      <div class="form-check form-switch mb-2">
+                          <p class="text-muted mt-2 fs-14">If you wish to permanently delete your account, please click the button below. Note that this action is irreversible and will result in the loss of all your data.</p>
+                          <a class="btn btn-white" href="#">Delete Account</a>
+                      </div>
+                  </div>
+                  
+                  </div>
+
+                  </div>
+    
+                </div>
+            </div>
+        </div>
+      </form>  
+
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+      let isDirty = false; // Flag to track if there are unsaved changes
+      const saveButton = document.querySelector('input[type="submit"]');
+
+      // Function to update the button class when input changes
+      const handleInputChange = () => {
+          if (!saveButton.classList.contains('btn-warning')) {
+              saveButton.classList.add('btn-main'); // Change to warning class
+          }
+          isDirty = true; // Set the flag to true
+      };
+
+      // Add event listeners to all input fields
+      const inputs = document.querySelectorAll('#reservationForm input[type="text"], #reservationForm input[type="email"], #reservationForm input[type="date"]');
+      inputs.forEach(input => {
+          input.addEventListener('input', handleInputChange);
+      });
+
+  });
+</script>
+
+{% endblock %}
